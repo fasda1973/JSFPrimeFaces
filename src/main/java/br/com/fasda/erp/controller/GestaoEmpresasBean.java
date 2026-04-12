@@ -9,7 +9,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.primefaces.context.RequestContext;
+import org.primefaces.PrimeFaces;
 
 import br.com.fasda.erp.model.Empresa;
 import br.com.fasda.erp.model.RamoAtividade;
@@ -60,7 +60,7 @@ public class GestaoEmpresasBean implements Serializable {
 		
 		messages.info("Empresa salva com sucesso!!!");
 		
-		RequestContext.getCurrentInstance().update(Arrays.asList(
+		PrimeFaces.current().ajax().update(Arrays.asList(
 				"frm:empresasDataTable", "frm:messages"));
 	}
 	
