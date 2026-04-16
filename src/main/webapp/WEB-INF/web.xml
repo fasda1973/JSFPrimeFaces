@@ -37,7 +37,7 @@
 	
 	<error-page>
 	    <exception-type>javax.faces.application.ViewExpiredException</exception-type>
-	    <location>/GestaoEmpresas.xhtml</location>
+	    <location>/Login.xhtml</location>
 	</error-page>
 
 	<resource-env-ref>
