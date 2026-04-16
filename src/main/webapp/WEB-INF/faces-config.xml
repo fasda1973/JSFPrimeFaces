@@ -11,5 +11,11 @@
 		
 		<message-bundle>br.com.fasda.erp.Messages</message-bundle>
 	</application>
+	
+	<factory>
+	    <exception-handler-factory>
+	        org.primefaces.application.exceptionhandler.PrimeExceptionHandlerFactory
+	    </exception-handler-factory>
+	</factory>
 
 </faces-config>
