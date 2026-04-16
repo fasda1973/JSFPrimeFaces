@@ -18,6 +18,16 @@
 	<h:form id="frm">
 	
 		<p:messages id="messages" />
+		
+		<p:toolbar>
+		    <f:facet name="left">
+		        </f:facet>
+		
+		    <f:facet name="right">
+		        <p:outputLabel value="Usuário: #{loginBean.nomeUsuario} " style="margin-right: 10px" />
+		        <p:commandButton value="Sair" action="#{loginBean.logout}" icon="pi pi-sign-out" />
+		    </f:facet>
+		</p:toolbar>
 	
 		<p:toolbar id="toolbar">
 			<f:facet name="left">
