@@ -30,5 +30,23 @@ public class LoginBean implements Serializable {
         return "/Login?faces-redirect=true";
     }
 
+	public String getNomeUsuario() {
+		return nomeUsuario;
+	}
+
+	public void setNomeUsuario(String nomeUsuario) {
+		this.nomeUsuario = nomeUsuario;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
     // Getters e Setters para nomeUsuario e senha
+    
+    
 }
