@@ -22,15 +22,25 @@ public class AutorizacaoFilter implements Filter {
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) 
             throws IOException, ServletException {
+        
         HttpServletResponse response = (HttpServletResponse) res;
         HttpServletRequest request = (HttpServletRequest) req;
+        
+        String requestURI = request.getRequestURI();
+        
+        // 1. Verifica se é a página de login
+        boolean paginaLogin = requestURI.endsWith("/Login.xhtml");
+        
+        // 2. Verifica se é um recurso (CSS, JS, Imagens) do PrimeFaces ou do seu sistema
+        // O JSF usa o caminho /javax.faces.resource/ para entregar esses arquivos
+        boolean recursoJSF = requestURI.contains("/javax.faces.resource/");
 
-        // Se não estiver logado e não estiver na página de login, redireciona
-        if (!request.getRequestURI().endsWith("/Login.xhtml") 
-                && (loginBean == null || loginBean.getNomeUsuario() == null)) {
-            response.sendRedirect(request.getContextPath() + "/Login.xhtml");
-        } else {
+        if (paginaLogin || recursoJSF || (loginBean != null && loginBean.getNomeUsuario() != null)) {
+            // Se for login, recurso ou usuário logado, permite o acesso
             chain.doFilter(req, res);
+        } else {
+            // Caso contrário, manda para o login
+            response.sendRedirect(request.getContextPath() + "/Login.xhtml");
         }
     }
     
