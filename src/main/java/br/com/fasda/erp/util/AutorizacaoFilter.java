@@ -4,6 +4,7 @@ import java.io.IOException;
 import javax.inject.Inject;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig; // Adicione este import
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -31,5 +32,15 @@ public class AutorizacaoFilter implements Filter {
         } else {
             chain.doFilter(req, res);
         }
+    }
+    
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+        // Pode deixar vazio, mas o método PRECISA existir
+    }
+
+    @Override
+    public void destroy() {
+        // Pode deixar vazio, mas o método PRECISA existir
     }
 }
