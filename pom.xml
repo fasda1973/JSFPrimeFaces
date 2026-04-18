@@ -6,7 +6,6 @@
 	<groupId>br.com.fasda</groupId>
 	<artifactId>curso-jsf-e-primefaces-essencial</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-
 	<packaging>war</packaging>
 
 	<name>curso-jsf-e-primefaces-essencial</name>
@@ -33,6 +32,35 @@
 			<version>2.3.2</version>
 		</dependency>
 		-->
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>11.0.0</version>
+		</dependency>
+		 
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>barcelona</artifactId>
+			<version> 1.0.0 </version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.faces</artifactId>
+			<version>2.2.14</version>
+			<scope>compile</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		
+		
+		
 		
 		<dependency>
 			<groupId>org.apache.poi</groupId>
@@ -46,33 +74,6 @@
 			<artifactId>weld-servlet</artifactId>
 			<version>2.4.0.Final</version>
 			<scope>compile</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.glassfish</groupId>
-			<artifactId>javax.faces</artifactId>
-			<version>2.2.14</version>
-			<scope>compile</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.primefaces</groupId>
-			<artifactId>primefaces</artifactId>
-			<version>11.0.0</version>
-			<scope>compile</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.primefaces.themes</groupId>
-			<artifactId>barcelona</artifactId>
-			<version> 1.0.0 </version>
-		</dependency>
-		
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
-			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
