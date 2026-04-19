@@ -16,7 +16,7 @@ public class LoginBean implements Serializable {
 
     public String login() {
         // Lógica simples para exemplo (você pode buscar no banco depois)
-        if ("admin".equals(nomeUsuario) && "123".equals(senha)) {
+    	if ("admin".equals(nomeUsuario) && "123".equals(senha)) {
             return "/GestaoEmpresas?faces-redirect=true";
         } else {
             FacesContext.getCurrentInstance().addMessage(null, 
