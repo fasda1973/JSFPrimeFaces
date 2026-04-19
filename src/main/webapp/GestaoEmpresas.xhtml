@@ -4,7 +4,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	template="WEB-INF/template/Layout.xhtml">
+	template="WEB-INF/template/layout.xhtml">
 	
 <ui:define name="titulo">
 	Cadastro de Empresas
@@ -22,7 +22,7 @@
 		<p:toolbar>		
 		    <f:facet name="right">
 		        <p:outputLabel value="Usuário: #{loginBean.nomeUsuario} " style="margin-right: 10px" />
-		        <p:commandButton value="Sair" action="#{loginBean.logout}" icon="pi pi-sign-out" />
+		        <p:commandButton value="Sair" action="#{loginBean.logout}" icon="ui-icon-person	" />
 		    </f:facet>
 		</p:toolbar>
 	
@@ -31,7 +31,7 @@
 				<p:inputText id="termoPesquisa" placeholder="Digite aqui um termo para pesquisa..." 
 					size="30" value="#{gestaoEmpresasBean.termoPesquisa}" />
 				
-				<p:commandButton value="Pesquisar" icon="pi pi-search-plus"
+				<p:commandButton value="Pesquisar" icon="ui-icon-search"
 					actionListener="#{gestaoEmpresasBean.pesquisar}" update="empresasDataTable messages"
 					process="@this termoPesquisa" />
 				
@@ -39,7 +39,7 @@
 					<span class="pi pi-ellipsis-v" />
 				</span>
 				
-				<p:commandButton value="Nova" icon="pi pi-plus" 
+				<p:commandButton value="Nova" icon="ui-icon-plus" 
 					actionListener="#{gestaoEmpresasBean.prepararNovaEmpresa}"
 					oncomplete="PF('empresaDialogWidgetVar').show()"
 					update="empresaDialog" process="@this">
@@ -50,7 +50,7 @@
 					<span class="pi pi-ellipsis-v" />
 				</span>
 				
-				<p:commandButton value="Editar" icon="pi pi-pencil"
+				<p:commandButton value="Editar" icon="ui-icon-edit"
 					disabled="#{not gestaoEmpresasBean.empresaSeleciona}"
 					actionListener="#{gestaoEmpresasBean.prepararEdicao}"
 					oncomplete="PF('empresaDialogWidgetVar').show()"
@@ -58,7 +58,7 @@
 					<p:resetInput target="empresaDialog" />
 				</p:commandButton>
 				
-				<p:commandButton value="Excluir" icon="pi pi-trash"
+				<p:commandButton value="Excluir" icon="ui-icon-trash"
 					disabled="#{not gestaoEmpresasBean.empresaSeleciona}"
 					actionListener="#{gestaoEmpresasBean.excluir}"
 					update="messages empresasDataTable toolbar"
@@ -71,7 +71,7 @@
 					<span class="pi pi-ellipsis-v" />
 				</span>
 				
-				<p:commandButton value="Exportar para Excel" icon="pi pi-file-excel"
+				<p:commandButton value="Exportar para Excel" icon="ui-icon-import-export"
 					ajax="false">
 					<p:dataExporter type="xls" target="empresasDataTable" fileName="Empresas" />
 				</p:commandButton>
