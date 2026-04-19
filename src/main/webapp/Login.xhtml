@@ -1,34 +1,121 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+	<f:facet name="first">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+	    <meta name="apple-mobile-web-app-capable" content="yes" />
+	</f:facet>
     <title>Login - ERP</title>
-    
+    <h:outputScript name="js/ripple.js" library="barcelona-layout" />
+    <h:outputScript name="js/layout.js" library="barcelona-layout" />
 </h:head>
 
-<h:body>
-    <p:dialog header="Acesso ao Sistema" visible="true" closable="false" 
-              draggable="false" resizable="false" modal="true" width="350">
-        
-        <h:form id="frm">
-            <p:messages autoUpdate="true" closable="true" />
-            
-            <p:panelGrid columns="2" styleClass="ui-noborder">
-                <p:outputLabel value="Usuário" for="usuario" />
-                <p:inputText id="usuario" value="#{loginBean.nomeUsuario}" required="true" />
-
-                <p:outputLabel value="Senha" for="senha" />
-                <p:password id="senha" value="#{loginBean.senha}" required="true" />
-
-                <h:panelGroup />
-                <p:commandButton value="Login" action="#{loginBean.login}" update="@form" icon="pi pi-sign-in" />               
-            </p:panelGrid>
-        </h:form>
-    </p:dialog>
+<h:body styleClass="login-body">
+<!-- 	
+	<div class="login-panel ui-fluid">
+		<div class="ui-g">
+			<div class="ui-g-12 login-header">
+			    <h1>LOGIN</h1>
+			    <h2>Welcome to Barcelona</h2>
+			    <p:graphicImage name="images/logo.png" library="barcelona-layout" />
+			</div>
+			<h:form id="frm">
+			<div class="ui-g-12">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:inputText />
+                    <label>Username</label>
+                </h:panelGroup>
+            </div>
+            <div class="ui-g-12">
+                <h:panelGroup styleClass="md-inputfield">
+                    <p:password feedback="false"/>
+                    <label>Password</label>
+                </h:panelGroup>
+            </div>
+            <div class="ui-g-12 chkbox-container">
+                <p:selectBooleanCheckbox id="remember-me" />
+                <p:outputLabel for="remember-me" value="Remember Me"/>
+            </div>
+            <div class="ui-g-12 button-container">
+                <p:button outcome="/GestaoEmpresas" value="Sign In" icon="ui-icon-person" />
+            </div>
+            </h:form>
+  -->          
+			    <p:dialog header="Acesso ao Sistema" visible="true" closable="false" 
+			              draggable="false" resizable="false" modal="true" width="350">
+			        
+			        <div class="ui-g-12 login-header">
+					    <h1>LOGIN</h1>
+					    <h2>Welcome to Barcelona</h2>
+					    <p:graphicImage name="images/logo.png" library="barcelona-layout" />
+					</div>
+			        
+			        <h:form id="frmn">
+			            <p:messages autoUpdate="true" closable="true" />
+			            
+			            <p:panelGrid columns="2" styleClass="ui-noborder">
+			                <p:outputLabel value="Usuário" for="usuario" />
+			                <p:inputText id="usuario" value="#{loginBean.nomeUsuario}" required="true" />
+			
+			                <p:outputLabel value="Senha" for="senha" />
+			                <p:password id="senha" value="#{loginBean.senha}" required="true" />
+			
+			                <h:panelGroup />
+			                <p:commandButton value="Login" action="#{loginBean.login}" update="@form" icon="ui-icon-person" />               
+			            </p:panelGrid>
+			        </h:form>
+			    </p:dialog>
+<!-- 
+	    </div>
+    </div>
+ -->   
+    <h:outputStylesheet name="css/layout-blue.css" library="barcelona-layout" />
+    <h:outputStylesheet name="css/ripple.css" library="barcelona-layout" /> 
+       
 </h:body>
+
+<!--
+	<h:body styleClass="login-body">
+        
+        <div class="login-panel ui-fluid">
+            <div class="ui-g">
+                <div class="ui-g-12 login-header">
+                    <h1>LOGIN</h1>
+                    <h2>Welcome to Barcelona</h2>
+                    <p:graphicImage name="images/logo.png" library="barcelona-layout" />
+                </div>
+                <div class="ui-g-12">
+                    <h:panelGroup styleClass="md-inputfield">
+                        <p:inputText />
+                        <label>Username</label>
+                    </h:panelGroup>
+                </div>
+                <div class="ui-g-12">
+                    <h:panelGroup styleClass="md-inputfield">
+                        <p:password feedback="false"/>
+                        <label>Password</label>
+                    </h:panelGroup>
+                </div>
+                <div class="ui-g-12 chkbox-container">
+                    <p:selectBooleanCheckbox id="remember-me" />
+                    <p:outputLabel for="remember-me" value="Remember Me"/>
+                </div>
+                <div class="ui-g-12 button-container">
+                    <p:button outcome="/dashboard" value="Sign In" icon="ui-icon-person" />
+                </div>
+            </div>
+        </div>
+        
+        <h:outputStylesheet name="css/layout-#{guestPreferences.layout}.css" library="barcelona-layout" />
+        <h:outputStylesheet name="css/ripple.css" library="barcelona-layout" />
+       
+    </h:body>
+-->
 </html>
