@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="WEB-INF/template/layout.xhtml">
 	
 <ui:define name="titulo">
@@ -81,6 +81,7 @@
 		<p:spacer height="20px" />
 	
 		<p:dataTable id="empresasDataTable" value="#{gestaoEmpresasBean.listaEmpresas}"
+			reflow="true" style="margin-top: 20px"
 			var="empresa" emptyMessage="Nenhuma informação a ser exibida"
 			paginator="true" rows="10" paginatorPosition="bottom"
 			selectionMode="single" selection="#{gestaoEmpresasBean.empresa}" rowKey="#{empresa.id}">
@@ -112,15 +113,16 @@
 			
 			<p:defaultCommand target="salvarCommandButton" scope="empresaDialog" />
 			
-			<h:panelGrid id="empresaPanelGrid" columns="2"
-				rendered="#{gestaoEmpresasBean.empresa ne null}">
+			<h:panelGrid id="empresaPanelGrid" columns="2" layout="grid" columnClasses="ui-grid-col-4, ui-grid-col-8" 
+             	styleClass="ui-panelgrid-blank" rendered="#{gestaoEmpresasBean.empresa ne null}">
+				
 				<p:outputLabel value="Razão Social: " for="razaoSocial" />
-				<p:inputText id="razaoSocial" size="80" maxlength="120"
-				value="#{gestaoEmpresasBean.empresa.razaoSocial}" />
+				<p:inputText id="razaoSocial" style="width: 100%"
+					value="#{gestaoEmpresasBean.empresa.razaoSocial}" />
 				
 				<p:outputLabel value="Nome Fantasia: " for="nomeFantasia" />
 				<p:inputText id="nomeFantasia" size="80" maxlength="80"
-				value="#{gestaoEmpresasBean.empresa.nomeFantasia}" />
+					value="#{gestaoEmpresasBean.empresa.nomeFantasia}" />
 				
 				<p:outputLabel value="Tipo Empresa: " for="tipo" />
 				<p:selectOneMenu id="tipo" value="#{gestaoEmpresasBean.empresa.tipo}">
@@ -131,7 +133,7 @@
 				</p:selectOneMenu>
 				
 				<p:outputLabel value="CNPJ: " for="cnpj" />
-				<p:inputMask id="cnpj" mask="99.999.999/9999-99" size="18" maxlength="18"
+				<p:inputMask id="cnpj" mask="99.999.999/9999-99" style="width: 100%"
 					value="#{gestaoEmpresasBean.empresa.cnpj}" />
 				
 				<p:outputLabel value="Data Fundação: " for="dataFundacao"/>
