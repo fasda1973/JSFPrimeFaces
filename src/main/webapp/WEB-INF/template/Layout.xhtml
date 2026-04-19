@@ -26,31 +26,31 @@
 	<div id="conteudo">
 		<ui:insert name="conteudo" />
 	</div>
-
-	<footer> 
-		Curso Online "JSF e PrimeFaces Essêncial" 
-	</footer>
 	
 	<h:form>
 		<p:confirmDialog global="true">
-			<p:commandButton value="Não" icon="fa fa-remove"
+			<p:commandButton value="Não" icon="ui-icon-remove"
 				styleClass="ui-confirmdialog-no" />
 			
-			<p:commandButton value="Sim" icon="fa fa-check"
+			<p:commandButton value="Sim" icon="ui-icon-check"
 				styleClass="ui-confirmdialog-yes" />	
 		</p:confirmDialog>
 		
 		<p:menu style="width: 100%; border: none">
-	        <p:menuitem value="Empresas" icon="pi pi-fw pi-briefcase" 
+	        <p:menuitem value="Empresas" icon="ui-icon-store" 
 	                    outcome="/GestaoEmpresas" />
 	        
-	        <p:menuitem value="Usuários" icon="pi pi-fw pi-users" 
+	        <p:menuitem value="Usuários" icon="ui-icon-group" 
 	                    outcome="/CadastroUsuario" />
 	        
-	        <p:menuitem value="Sair" icon="pi pi-fw pi-sign-out" 
+	        <p:menuitem value="Sair" icon="ui-icon-exit-to-app" 
 	                    action="#{loginBean.logout}" />
     	</p:menu>
 	</h:form>
+	
+	<footer> 
+		Curso Online "JSF e PrimeFaces Essêncial" 
+	</footer>
 	
 	<h:outputStylesheet name="css/layout-deep-purple.css" library="barcelona-layout" />
     <h:outputStylesheet name="css/ripple.css" library="barcelona-layout" /> 

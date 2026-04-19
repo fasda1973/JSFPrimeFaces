@@ -1,6 +1,8 @@
 package br.com.fasda.erp.repository;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -29,4 +31,17 @@ public class UsuarioRepository implements Serializable {
         // Como é uma inserção, precisamos de uma transação se não estiver usando @Transactional
         this.manager.merge(usuario);
     }
+    
+    public List<Usuario> todos() {
+        return manager.createQuery("from Usuario", Usuario.class).getResultList();
+    }
+
+    public Usuario porId(Long id) {
+        return manager.find(Usuario.class, id);
+    }
+
+    public void remover(Usuario usuario) {
+        this.manager.remove(this.manager.getReference(Usuario.class, usuario.getId()));
+    }
+    
 }

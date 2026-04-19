@@ -20,9 +20,37 @@
                                 weakLabel="Fraca" goodLabel="Boa" strongLabel="Forte" />
 
                     <h:panelGroup />
-                    <p:commandButton value="Salvar" action="#{cadastroUsuarioBean.salvar}" update="frm" icon="pi pi-save" />
+                    <p:commandButton value="Salvar" action="#{cadastroUsuarioBean.salvar}" update="frm" icon="ui-icon-save" />
                 </p:panelGrid>
             </p:panel>
+            
+            <p:dataTable value="#{cadastroUsuarioBean.listaUsuarios}" var="user"
+                     style="margin-top: 20px" emptyMessage="Nenhum usuário encontrado.">
+            
+	            <p:column headerText="ID" width="50">
+	                <h:outputText value="#{user.id}" />
+	            </p:column>
+	            
+	            <p:column headerText="Usuário">
+	                <h:outputText value="#{user.nomeUsuario}" />
+	            </p:column>
+	
+	            <p:column headerText="Ações" width="100">
+	                <p:commandButton icon="ui-icon-edit" update=":frm:painel" process="@this">
+	                    <f:setPropertyActionListener value="#{user}" target="#{cadastroUsuarioBean.usuario}" />
+	                </p:commandButton>
+	
+	                <p:commandButton icon="ui-icon-trash" action="#{cadastroUsuarioBean.excluir(user)}"
+	                                 update=":frm" process="@this">
+	                    <p:confirm header="Confirmação" message="Excluir este usuário?" icon="ui-icon-report-problem" />
+	                </p:commandButton>
+	            </p:column>
+        	</p:dataTable>
+        	
+        	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+	            <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+	            <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+        	</p:confirmDialog>
         </h:form>
     </ui:define>
 </ui:composition>
