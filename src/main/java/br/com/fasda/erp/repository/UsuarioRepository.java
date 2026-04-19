@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import br.com.fasda.erp.model.Usuario;
+import br.com.fasda.erp.util.Transacional;
 
 public class UsuarioRepository implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -21,5 +22,11 @@ public class UsuarioRepository implements Serializable {
         } catch (NoResultException e) {
             return null; // Usuário ou senha incorretos
         }
+    }
+    
+    @Transacional
+    public void guardar(Usuario usuario) {
+        // Como é uma inserção, precisamos de uma transação se não estiver usando @Transactional
+        this.manager.merge(usuario);
     }
 }

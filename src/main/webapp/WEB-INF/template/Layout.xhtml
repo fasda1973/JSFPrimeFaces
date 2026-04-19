@@ -39,6 +39,17 @@
 			<p:commandButton value="Sim" icon="fa fa-check"
 				styleClass="ui-confirmdialog-yes" />	
 		</p:confirmDialog>
+		
+		<p:menu style="width: 100%; border: none">
+	        <p:menuitem value="Empresas" icon="pi pi-fw pi-briefcase" 
+	                    outcome="/GestaoEmpresas" />
+	        
+	        <p:menuitem value="Usuários" icon="pi pi-fw pi-users" 
+	                    outcome="/CadastroUsuario" />
+	        
+	        <p:menuitem value="Sair" icon="pi pi-fw pi-sign-out" 
+	                    action="#{loginBean.logout}" />
+    	</p:menu>
 	</h:form>
 	
 	<h:outputStylesheet name="css/layout-deep-purple.css" library="barcelona-layout" />
