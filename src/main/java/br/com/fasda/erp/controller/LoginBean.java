@@ -4,19 +4,31 @@ import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
+
+import br.com.fasda.erp.model.Usuario;
+import br.com.fasda.erp.repository.UsuarioRepository;
 
 @Named
 @SessionScoped
 public class LoginBean implements Serializable {
     private static final long serialVersionUID = 1L;
-
+    
+    @Inject
+    private UsuarioRepository usuarios; // Injeta o novo repositório
+    
     private String nomeUsuario;
     private String senha;
+    private Usuario usuarioLogado; // Guarda o objeto completo do banco
 
     public String login() {
+    	
+    	// Busca no banco
+        this.usuarioLogado = usuarios.porLogin(nomeUsuario, senha);
+    	
         // Lógica simples para exemplo (você pode buscar no banco depois)
-    	if ("admin".equals(nomeUsuario) && "123".equals(senha)) {
+    	if (this.usuarioLogado != null) {
             return "/GestaoEmpresas?faces-redirect=true";
         } else {
             FacesContext.getCurrentInstance().addMessage(null, 
@@ -29,7 +41,8 @@ public class LoginBean implements Serializable {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "/Login?faces-redirect=true";
     }
-
+    
+    // Getters e Setters para nomeUsuario e senha
 	public String getNomeUsuario() {
 		return nomeUsuario;
 	}
@@ -45,8 +58,5 @@ public class LoginBean implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
-    // Getters e Setters para nomeUsuario e senha
-    
     
 }
