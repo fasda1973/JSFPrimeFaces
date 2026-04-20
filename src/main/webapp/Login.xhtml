@@ -5,7 +5,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-<h:head>
+<h:head> 
 	<f:facet name="first">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -13,8 +13,11 @@
 	    <meta name="apple-mobile-web-app-capable" content="yes" />
 	</f:facet>
     <title>Login - ERP</title>
+    
+    <h:outputStylesheet library="fasda" name="login.css" />
+    
     <h:outputScript name="js/ripple.js" library="barcelona-layout" />
-    <h:outputScript name="js/layout.js" library="barcelona-layout" />
+    <h:outputScript name="js/layout.js" library="barcelona-layout" />   
 </h:head>
 
 <h:body styleClass="login-body">
@@ -26,11 +29,10 @@
 			    <h2>Acesso ao Sistema</h2>
 			    <p:graphicImage name="images/logo.png" library="barcelona-layout" />
 			</div>
-	        
 	        <h:form id="frmn">
 	            <p:messages autoUpdate="true" closable="true" />
 	            
-	            <p:panelGrid columns="2" styleClass="ui-noborder">
+	            <p:panelGrid columns="1" styleClass="ui-noborder" >
 	                <p:outputLabel value="Usuário" for="usuario" />
 	                <p:inputText id="usuario" value="#{loginBean.nomeUsuario}" required="true" />
 	
@@ -40,7 +42,7 @@
 	                <h:panelGroup />
 	                <p:commandButton value="Login" action="#{loginBean.login}" update="@form" icon="ui-icon-person" />               
 	            </p:panelGrid>
-	        </h:form>			    
+	        </h:form>       			    
  	    </div>
     </div>
    
