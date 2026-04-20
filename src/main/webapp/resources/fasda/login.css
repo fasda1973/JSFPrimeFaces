@@ -1,0 +1,22 @@
+/* login.css */
+
+.login-body {
+	display: flex;
+	align-items: center; /* Centraliza verticalmente */
+	justify-content: center; /* Centraliza horizontalmente */
+	min-height: 100vh; /* Garante que ocupe a altura total da tela */
+	margin: 0;
+	background-color: #f4f4f4; /* Opcional: cor de fundo */
+ }
+
+ .login-panel {
+     width: 100%;
+     max-width: 300px; /* Define uma largura máxima elegante para o formulário */
+     padding: 20px;
+ }
+ 
+ /* Garante que o formulário e o grid ocupem toda a largura do painel */
+ .login-panel form, .ui-panelgrid {
+     width: 100% !important;
+ }
+ 	
