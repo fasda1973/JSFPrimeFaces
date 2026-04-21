@@ -8,6 +8,7 @@ body {
 }
 
 header {
+	width: 100%;
 	padding: 5px;
 	margin-bottom: 20px;
 	height: 30px;
@@ -35,6 +36,11 @@ h1 {
 	margin-bottom: 10px
 }
 
+/* Garante que o box-sizing não quebre a largura com o padding */
+* {
+    box-sizing: border-box;
+}
+
 /* Estilizando a barra lateral */
 .meu-sidebar {
     width: 250px;
@@ -43,7 +49,8 @@ h1 {
     position: fixed;
     left: 0;
     top: 0;
-    padding-top: 60px;
+    z-index: 1000; /* Garante que fica visível */
+    overflow-y: auto; /* Caso o menu seja grande, permite scroll */
     color: white;
 }
 
@@ -72,7 +79,9 @@ h1 {
 /* Espaço para o menu lateral em telas grandes */
 .layout-content {
     margin-left: 250px; /* Mesma largura do sidebar */
-    padding: 20px;
+    padding: 1px;
+    display: block; /* Garante que ele se comporte como um bloco */
+    min-height: 100vh;
     transition: margin-left 0.3s; /* Transição suave */
 }
 
