@@ -1,0 +1,26 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <div class="meu-sidebar">
+        <h:form id="menu-form">
+            <div class="perfil-resumo">
+                <p:graphicImage name="logo2.png" library="fasda" width="60" style="border-radius: 50%"/>
+                <h4>Bem-vindo!</h4>
+            </div>
+
+            <p:menu toggleable="true" styleClass="menu-customizado">
+                <p:submenu label="Cadastros">
+                    <p:menuitem value="Empresas" icon="ui-icon-store" outcome="/GestaoEmpresas" />
+                    <p:menuitem value="Usuários" icon="ui-icon-group" outcome="/CadastroUsuario" />
+                </p:submenu>
+                
+                <p:submenu label="Sistema">
+                    <p:menuitem value="Sair" icon="ui-icon-exit-to-app" action="#{loginBean.logout}" />
+                </p:submenu>
+            </p:menu>
+        </h:form>
+    </div>
+</ui:composition>

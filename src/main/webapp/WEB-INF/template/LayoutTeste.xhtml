@@ -13,77 +13,22 @@
 			<meta name="apple-mobile-web-app-capable" content="yes" />
 		</f:facet>
 		<title>Layout Teste</title>
-		<h:outputScript name="js/nanoscroller.js" library="barcelona-layout" />
-		<h:outputScript name="js/layout.js" library="barcelona-layout" />
-		<h:outputScript name="js/ripple.js" library="barcelona-layout" />
-		<ui:insert name="head"/>
+		
 		
 		<h:outputStylesheet library="fasda" name="estilo.css" />
 	</h:head>
 
-<h:body styleClass="main-body">
-	<header>
-		<h:graphicImage library="fasda" name="logo2.png" />
-	</header>
+<h:body>
+    <ui:include src="/WEB-INF/sidebar.xhtml" />
 
-	<h2>
-		<ui:insert name="titulo" />
-	</h2>
-
-	<div id="conteudo">
-		<ui:insert name="conteudo" />
-	</div>
-	
-	<h:form>
-		<p:confirmDialog global="true">
-			<p:commandButton value="Não" icon="ui-icon-remove"
-				styleClass="ui-confirmdialog-no" />
-			
-			<p:commandButton value="Sim" icon="ui-icon-check"
-				styleClass="ui-confirmdialog-yes" />	
-		</p:confirmDialog>
-		
-		<p:menu style="width: 100%; border: none">
-	        <p:menuitem value="Empresas" icon="ui-icon-store" 
-	                    outcome="/GestaoEmpresas" />
-	        
-	        <p:menuitem value="Usuários" icon="ui-icon-group" 
-	                    outcome="/CadastroUsuario" />
-	        
-	        <p:menuitem value="Sair" icon="ui-icon-exit-to-app" 
-	                    action="#{loginBean.logout}" />
-    	</p:menu>
-	</h:form>
-	
-	<div class="layout-wrapper #{guestPreferences.overlayMenu ? 'layout-overlay-menu' : null} #{guestPreferences.orientationRTL ? 'layout-rtl' : null}">
-		<ui:include src="../topbar.xhtml" />
-	<!-- 
-		<ui:include src="../menu.xhtml" />
-	-->
-		<div class="layout-main">
-		    <div class="layout-main-content">
-		        <ui:insert name="content"/>
-		        
-		        <ui:include src="../footer.xhtml" />
-		    </div>                                
-	    </div>
-    </div>
-	
-	<p:ajaxStatus style="width:32px;height:32px;position:fixed;right:7px;bottom:7px">
-	    <f:facet name="start">
-	        <i class="fa fa-circle-o-notch fa-spin ajax-loader" aria-hidden="true"></i>
-	    </f:facet>
-	
-	    <f:facet name="complete">
-	        <h:outputText value="" />
-	    </f:facet>
-     </p:ajaxStatus>
-	
-	<h:outputStylesheet name="css/nanoscroller.css" library="barcelona-layout" />
-    <h:outputStylesheet name="css/animate.css" library="barcelona-layout" />	
-    <h:outputStylesheet name="css/ripple.css" library="barcelona-layout" />
-    <h:outputStylesheet name="css/layout-#{guestPreferences.layout}.css" library="barcelona-layout" /> 
+    <main class="layout-content">
+        <div class="container-fluido">
+            <ui:insert name="content" />
+        </div>
+    </main>
+    
     <h:outputStylesheet name="css/layout-deep-purple.css" library="barcelona-layout" />
+    <h:outputStylesheet name="css/ripple.css" library="barcelona-layout" /> 
 </h:body>
 
 </html>
