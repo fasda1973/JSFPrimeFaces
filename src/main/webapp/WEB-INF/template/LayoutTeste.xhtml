@@ -56,6 +56,10 @@
 	</h:form>
 	
 	<div class="layout-wrapper #{guestPreferences.overlayMenu ? 'layout-overlay-menu' : null} #{guestPreferences.orientationRTL ? 'layout-rtl' : null}">
+		<ui:include src="../topbar.xhtml" />
+	<!-- 
+		<ui:include src="../menu.xhtml" />
+	-->
 		<div class="layout-main">
 		    <div class="layout-main-content">
 		        <ui:insert name="content"/>
