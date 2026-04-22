@@ -23,6 +23,10 @@
 
     <main class="layout-content">
         <header>
+        	<a href="#" id="layout-menu-btn" class="menu-button">
+		        <i class="pi pi-bars"></i>
+		    </a>
+        
             <h:graphicImage library="fasda" name="logo2.png" />
         </header>
 
@@ -47,7 +51,17 @@
     </h:form>
     
     <h:outputStylesheet name="css/layout-deep-purple.css" library="barcelona-layout" />
-    <h:outputStylesheet name="css/ripple.css" library="barcelona-layout" /> 
+    <h:outputStylesheet name="css/ripple.css" library="barcelona-layout" />
+    
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $("#layout-menu-btn").on("click", function(e) {
+            e.preventDefault();
+         	// Agora ele alterna a classe 'menu-aberto'
+            $("body").toggleClass("menu-aberto");
+        });
+    });
+</script> 
 </h:body>
 
 </html>
