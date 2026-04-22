@@ -120,3 +120,15 @@ body.menu-aberto .layout-content {
 .meu-sidebar, .layout-content {
     transition: all 0.3s ease-in-out;
 }
+
+.ui-icon.pi {
+    font-family: 'primeicons' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+}
