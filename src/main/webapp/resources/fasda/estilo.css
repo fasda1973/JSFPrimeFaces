@@ -14,7 +14,7 @@ header {
 	margin-top: 15px;
 	height: 30px;
 	/*background-color: #94c00e;*/
-	color: #fff;
+	color: #ffffff;
 	/*box-shadow: 0px 2px 2px #ccc*/
 }
 
@@ -157,4 +157,30 @@ body.menu-aberto .layout-content {
 .footer-align {
     display: flex;
     align-items: center; /* Alinha tudo que estiver dentro (imagem e span) pelo meio */
+}
+
+/* Container principal do Topbar */
+.topbar-container {
+    display: flex;
+    justify-content: space-between; /* Espaça a logo para um lado e o usuário para o outro */
+    align-items: center;            /* Alinha todos verticalmente no centro */
+    padding: 0 20px;
+    height: 60px;                   /* Altura padrão de topbar */
+}
+
+/* Agrupamento do lado direito */
+.topbar-items {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espaço entre o nome e o botão */
+}
+
+.usuario-label {
+    color: white; /* Ajuste conforme a cor do seu header */
+    font-weight: 500;
+}
+
+/* Estilo para o botão de sair ficar mais discreto */
+.btn-sair {
+    color: white !important;
 }
