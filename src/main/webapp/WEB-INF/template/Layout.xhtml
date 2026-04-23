@@ -21,6 +21,7 @@
 </h:head>
 
 <h:body>
+	<ui:include src="/WEB-INF/topbar.xhtml" />
     <ui:include src="/WEB-INF/sidebar.xhtml" />
 
     <main class="layout-content">
@@ -28,8 +29,9 @@
         	<a href="#" id="layout-menu-btn" class="menu-button">
 		        <i class="pi pi-bars"></i>
 		    </a>
-        	
+        	<!--
             <h:graphicImage name="logo2-fasda.png" library="fasda" styleClass="logo-topbar-footer" />
+            -->
         </header>
 
         <h2>
@@ -41,6 +43,7 @@
             
             <ui:include src="../footer.xhtml" />
         </div>
+        
     </main>
 
     <h:form>
@@ -51,18 +54,16 @@
     </h:form>
     
     <h:outputStylesheet name="css/layout-deep-purple.css" library="barcelona-layout" />
-    <!--
-    <h:outputStylesheet name="css/ripple.css" library="barcelona-layout" />
-     -->
+    
     <script type="text/javascript">
-    $(document).ready(function() {
-        $("#layout-menu-btn").on("click", function(e) {
-            e.preventDefault();
-         	// Agora ele alterna a classe 'menu-aberto'
-            $("body").toggleClass("menu-aberto");
-        });
-    });
-</script> 
+	    $(document).ready(function() {
+	        $("#layout-menu-btn").on("click", function(e) {
+	            e.preventDefault();
+	         	// Agora ele alterna a classe 'menu-aberto'
+	            $("body").toggleClass("menu-aberto");
+	        });
+	    });
+	</script> 
 </h:body>
 
 </html>
