@@ -11,10 +11,11 @@ header {
 	width: 100%;
 	padding: 5px;
 	margin-bottom: 20px;
+	margin-top: 15px;
 	height: 30px;
-	background-color: #94c00e;
+	/*background-color: #94c00e;*/
 	color: #fff;
-	box-shadow: 0px 2px 2px #ccc
+	/*box-shadow: 0px 2px 2px #ccc*/
 }
 
 #conteudo {
@@ -100,7 +101,7 @@ h1 {
 
 /* Estilo do botão hamburguer */
 .menu-button {
-    color: white;
+    color: gray;
     font-size: 20px;
     margin-right: 15px;
     vertical-align: top;
@@ -131,4 +132,29 @@ body.menu-aberto .layout-content {
     line-height: 1;
     display: inline-block;
     -webkit-font-smoothing: antialiased;
+}
+
+/* Logos */
+.logo-menu {
+    width: 180px;  /* Tamanho que você desejar */
+    height: auto;
+    border-radius: 4px; /* Opcional: deixa os cantos arredondados */
+}
+
+.logo-login {
+    width: 100px;  /* Tamanho que você desejar */
+    height: auto;
+    border-radius: 4px; /* Opcional: deixa os cantos arredondados */
+}
+
+.logo-topbar-footer {
+    width: 100px;  /* Tamanho que você desejar */
+    height: auto;
+    border-radius: 4px; /* Opcional: deixa os cantos arredondados */
+}
+
+/* Classe para o container que segura a logo e o texto */
+.footer-align {
+    display: flex;
+    align-items: center; /* Alinha tudo que estiver dentro (imagem e span) pelo meio */
 }

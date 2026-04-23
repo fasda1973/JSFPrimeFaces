@@ -24,12 +24,12 @@
     <ui:include src="/WEB-INF/sidebar.xhtml" />
 
     <main class="layout-content">
-        <header>
+        <header class="footer-align">
         	<a href="#" id="layout-menu-btn" class="menu-button">
 		        <i class="pi pi-bars"></i>
 		    </a>
-        
-            <h:graphicImage library="fasda" name="logo2.png" />
+        	
+            <h:graphicImage name="logo-fasda.png" library="fasda" styleClass="logo-topbar-footer" />
         </header>
 
         <h2>
@@ -38,11 +38,9 @@
 
         <div id="conteudo">
             <ui:insert name="conteudo" />
+            
+            <ui:include src="../footer.xhtml" />
         </div>
-        
-        <footer>
-            Fasda TI - 2026
-        </footer>
     </main>
 
     <h:form>
