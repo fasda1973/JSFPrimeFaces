@@ -11,11 +11,14 @@
 	    <h:link outcome="/GestaoEmpresas" styleClass="topbar-logo">
 	        <p:graphicImage name="logo2-fasda.png" library="fasda" styleClass="logo-topbar-footer" />
 	    </h:link>
-     
-     
-		<div class="topbar-items">		
-		    <p:outputLabel value="Usuário: #{loginBean.nomeUsuario} " styleClass="usuario-label"/>
-		    <p:commandButton value="Sair" action="#{loginBean.logout}" icon="pi pi-power-off" styleClass="ui-button-flat btn-sair" />			
+     	
+     	<div class="topbar-items">
+		    <p:menuButton value="#{loginBean.nomeUsuario}" icon="pi pi-user" styleClass="btn-usuario-menu">
+		        <p:menuitem value="Meu Perfil" icon="pi pi-id-card" outcome="/Perfil" />
+		        <p:menuitem value="Configurações" icon="pi pi-cog" outcome="/Config" />
+		        <p:separator />
+		        <p:menuitem value="Sair" action="#{loginBean.logout}" icon="pi pi-power-off" />
+		    </p:menuButton>
 		</div>
     </h:form>
 </div>
