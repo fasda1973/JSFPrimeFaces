@@ -102,10 +102,13 @@ h1 {
 /* Estilo do botão hamburguer */
 .menu-button {
     color: gray;
-    font-size: 20px;
+    font-size: 24px; /* Tamanho ideal para o ícone */
     margin-right: 15px;
-    vertical-align: top;
-    text-decoration: none;
+    margin-top: 45px; /* Garante que não haja espaço no topo */
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 60px; /* Deve ser a MESMA altura que definimos para o seu Topbar */
+    cursor: pointer;
 }
 
 /* ESTADO ATIVO: Quando o menu deve aparecer */
@@ -220,6 +223,6 @@ body.menu-aberto .layout-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 15px;
     height: 60px;
 }
