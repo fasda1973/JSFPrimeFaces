@@ -154,6 +154,7 @@ body.menu-aberto .layout-content {
     width: 100px;  /* Tamanho que você desejar */
     height: auto;
     border-radius: 4px; /* Opcional: deixa os cantos arredondados */
+    padding: 0 5px;
 }
 
 /* Classe para o container que segura a logo e o texto */
