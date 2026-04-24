@@ -185,11 +185,11 @@ body.menu-aberto .layout-content {
     color: white !important;
 }
 
-/* Ajuste para o MenuButton em Topbar com fundo claro */
+/* Ajuste para o MenuButton sobre o fundo Deep Purple */
 .btn-usuario-menu .ui-button {
     background: transparent !important;
     border: none !important;
-    color: #2c3e50 !important; /* Um cinza azulado escuro para o texto */
+    color: white !important; /* Branco para contrastar com o roxo */
     box-shadow: none !important;
 }
 
@@ -197,15 +197,29 @@ body.menu-aberto .layout-content {
 .btn-usuario-menu .ui-button-icon-left, 
 .btn-usuario-menu .ui-button-text,
 .btn-usuario-menu .ui-icon-triangle-1-s {
-    color: #2c3e50 !important; /* Mesma cor escura */
+    color: white !important;
 }
 
 /* Efeito ao passar o rato (hover) - um fundo cinza bem clarinho */
 .btn-usuario-menu .ui-button:hover {
-    background: rgba(0, 0, 0, 0.05) !important;
+    background: rgba(255, 255, 255, 0.15) !important;
     border-radius: 4px;
 }
 
 .btn-usuario-menu .ui-button-icon-left {
     font-size: 1.2rem !important;
+}
+
+.topbar {
+    background-color: #673AB7; /* Roxo padrão do Deep Purple */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.topbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 60px;
 }
