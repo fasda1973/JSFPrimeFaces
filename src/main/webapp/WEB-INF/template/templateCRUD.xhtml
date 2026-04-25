@@ -21,7 +21,7 @@
                     
                     <p:commandButton value="Nova" icon="pi pi-plus" 
                         actionListener="#{managedBean.prepararNovo}"
-                        oncomplete="PF('dialogWidgetVar').show()"
+                        oncomplete="PF('widgetVarDialog').show()"
                         update="dialogId" process="@this">
                         <p:resetInput target="dialogId" />
                     </p:commandButton>
@@ -29,7 +29,7 @@
                     <p:commandButton value="Editar" icon="pi pi-pencil"
                         disabled="#{not managedBean.itemSelecionado}"
                         actionListener="#{managedBean.prepararEdicao}"
-                        oncomplete="PF('dialogWidgetVar').show()"
+                        oncomplete="PF('widgetVarDialog').show()"
                         update="dialogId" process="@this">
                         <p:resetInput target="dialogId" />
                     </p:commandButton>
@@ -53,17 +53,23 @@
                 <ui:insert name="colunas" />
             </p:dataTable>
 
-            <p:dialog id="dialogId" header="Registo" widgetVar="widgetVarDialog" modal="true" resizable="false" closeOnEscape="true">
+            <p:dialog id="dialogId" header="Cadastro de Empresa" widgetVar="widgetVarDialog" modal="true" resizable="false" closeOnEscape="true">               
+                
                 <p:messages id="dialogMessages" />
-                <h:panelGrid id="panelGrid" columns="2" layout="grid" styleClass="ui-panelgrid-blank">
-                    
-                    <ui:insert name="campos_formulario" />
-
-                    <h:outputLabel />
-                    <p:commandButton value="Salvar" actionListener="#{managedBean.salvar}"
-                        update="panelGrid dialogMessages"
-                        oncomplete="if (!args.validationFailed) PF('widgetVarDialog').hide()" process="dialogId"/>
-                </h:panelGrid>
+                
+                <h:panelGroup id="painelCampos">
+	                <h:panelGrid columns="2" id="gridCampos" rendered="#{managedBean.entidade ne null}">
+	                    
+	                    <ui:insert name="campos_formulario" />
+		                    
+	                    <h:outputLabel />
+	                    <p:commandButton value="Salvar"
+	                    				 actionListener="#{managedBean.salvar}"
+	                        			 update="gridCampos dialogMessages"
+	                        			 process="dialogId"
+	                        			 oncomplete="if (!args.validationFailed) PF('widgetVarDialog').hide()" />
+	                </h:panelGrid>
+                </h:panelGroup>
             </p:dialog>
         </h:form>
     </ui:define>

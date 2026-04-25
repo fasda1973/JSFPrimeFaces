@@ -1,6 +1,7 @@
 <ui:composition template="/WEB-INF/template/templateCRUD.xhtml"
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:p="http://primefaces.org/ui"
     xmlns:ui="http://java.sun.com/jsf/facelets">
 
@@ -20,11 +21,30 @@
     </ui:define>
 
     <ui:define name="campos_formulario">
-        <p:outputLabel value="Razão Social" for="razaoSocial" />
-        <p:inputText id="razaoSocial" value="#{gestaoEmpresasBean.entidade.razaoSocial}" />
-        
-        <p:outputLabel value="CNPJ" for="cnpj" />
-        <p:inputMask id="cnpj" mask="99.999.999/9999-99" value="#{gestaoEmpresasBean.entidade.cnpj}" />
-        </ui:define>
+	    <p:outputLabel value="Razão Social" for="razaoSocial" />
+	    <p:inputText id="razaoSocial" value="#{gestaoEmpresasBean.entidade.razaoSocial}" />
+	    
+	    <p:outputLabel value="Nome Fantasia" for="nomeFantasia" />
+	    <p:inputText id="nomeFantasia" value="#{gestaoEmpresasBean.entidade.nomeFantasia}" />
+	
+	    <p:outputLabel value="Tipo Empresa" for="tipo" />
+	    <p:selectOneMenu id="tipo" value="#{gestaoEmpresasBean.entidade.tipo}">
+	        <f:selectItem itemLabel="Selecione..." />
+	        <f:selectItems value="#{gestaoEmpresasBean.tiposEmpresa}" var="t" 
+	                       itemLabel="#{t.descricao}" itemValue="#{t}" />
+	    </p:selectOneMenu>
+	
+	    <p:outputLabel value="CNPJ" for="cnpj" />
+	    <p:inputMask id="cnpj" mask="99.999.999/9999-99" value="#{gestaoEmpresasBean.entidade.cnpj}" />
+	
+	    <p:outputLabel value="Data Fundação" for="dataFundacao" />
+	    <p:calendar id="dataFundacao" pattern="dd/MM/yyyy" value="#{gestaoEmpresasBean.entidade.dataFundacao}" />
+	
+	    <p:outputLabel value="Ramo Atividade" for="ramoAtividade" />
+	    <p:autoComplete id="ramoAtividade" value="#{gestaoEmpresasBean.entidade.ramoAtividade}"
+	                    completeMethod="#{gestaoEmpresasBean.CompletarRamoAtividade}"
+	                    converter="#{gestaoEmpresasBean.ramoAtividadeConverter}"
+	                    var="ramo" itemLabel="#{ramo.descricao}" itemValue="#{ramo}" />
+	</ui:define>
 
 </ui:composition>
