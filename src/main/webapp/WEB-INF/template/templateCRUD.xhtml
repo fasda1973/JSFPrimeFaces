@@ -1,0 +1,70 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="/WEB-INF/template/Layout.xhtml">
+
+    <ui:define name="conteudo">
+        <h:form id="frm">
+            <p:messages id="messages" />
+
+            <p:toolbar id="toolbar">
+                <f:facet name="left">
+                    <ui:insert name="pesquisa" />
+                    
+                    <p:commandButton value="Pesquisar" icon="pi pi-search"
+                        actionListener="#{managedBean.pesquisar}" update="dataTable messages"
+                        process="@this termoPesquisa" style="margin-left: 5px" />
+                    
+                    <span class="ui-separator"><span class="pi pi-ellipsis-v" /></span>
+                    
+                    <p:commandButton value="Nova" icon="pi pi-plus" 
+                        actionListener="#{managedBean.prepararNovo}"
+                        oncomplete="PF('dialogWidgetVar').show()"
+                        update="dialogId" process="@this">
+                        <p:resetInput target="dialogId" />
+                    </p:commandButton>
+                    
+                    <p:commandButton value="Editar" icon="pi pi-pencil"
+                        disabled="#{not managedBean.itemSelecionado}"
+                        actionListener="#{managedBean.prepararEdicao}"
+                        oncomplete="PF('dialogWidgetVar').show()"
+                        update="dialogId" process="@this">
+                        <p:resetInput target="dialogId" />
+                    </p:commandButton>
+
+                    <p:commandButton value="Excluir" icon="pi pi-trash"
+                        disabled="#{not managedBean.itemSelecionado}"
+                        actionListener="#{managedBean.excluir}"
+                        update="messages dataTable toolbar" process="@this">
+                        <p:confirm icon="pi pi-exclamation-triangle" header="Confirmação" message="Excluir este registro?" />
+                    </p:commandButton>
+                </f:facet>
+            </p:toolbar>
+
+            <p:dataTable id="dataTable" value="#{managedBean.listaItens}" var="item"
+                selectionMode="single" selection="#{managedBean.entidade}" rowKey="#{item.id}"
+                paginator="true" rows="10" paginatorPosition="bottom" style="margin-top: 20px" reflow="true">
+                
+                <p:ajax event="rowSelect" update="frm:toolbar" />
+                <p:ajax event="rowUnselect" update="frm:toolbar" />
+
+                <ui:insert name="colunas" />
+            </p:dataTable>
+
+            <p:dialog id="dialogId" header="Registo" widgetVar="widgetVarDialog" modal="true" resizable="false" closeOnEscape="true">
+                <p:messages id="dialogMessages" />
+                <h:panelGrid id="panelGrid" columns="2" layout="grid" styleClass="ui-panelgrid-blank">
+                    
+                    <ui:insert name="campos_formulario" />
+
+                    <h:outputLabel />
+                    <p:commandButton value="Salvar" actionListener="#{managedBean.salvar}"
+                        update="panelGrid dialogMessages"
+                        oncomplete="if (!args.validationFailed) PF('widgetVarDialog').hide()" process="dialogId"/>
+                </h:panelGrid>
+            </p:dialog>
+        </h:form>
+    </ui:define>
+</ui:composition>

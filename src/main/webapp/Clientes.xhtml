@@ -1,0 +1,21 @@
+<ui:composition template="/WEB-INF/template/templateCRUD.xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:param name="managedBean" value="#{gestaoClientesBean}" />
+
+    <ui:define name="pesquisa_campos">
+        <p:inputText id="termoPesquisa" value="#{gestaoClientesBean.termoPesquisa}" placeholder="Nome do cliente..." />
+    </ui:define>
+
+    <ui:define name="tabela_colunas">
+        <p:column headerText="Nome">#{item.nome}</p:column>
+        <p:column headerText="CPF">#{item.cpf}</p:column>
+    </ui:define>
+
+    <ui:define name="formulario_campos">
+        <p:outputLabel value="Nome" for="nome" />
+        <p:inputText id="nome" value="#{gestaoClientesBean.entidade.nome}" />
+    </ui:define>
+
+</ui:composition>
