@@ -1,6 +1,7 @@
 <ui:composition 
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
 
@@ -13,12 +14,13 @@
 			
             <p:menu toggleable="true" styleClass="menu-customizado">
                 <p:submenu label="Cadastros">
-                    <p:menuitem value="Empresas" icon="pi pi-building" outcome="/GestaoEmpresas" />
-                    <p:menuitem value="Usuários" icon="pi pi-users" outcome="/CadastroUsuario" />
+                    <p:menuitem value="Empresas" icon="fa fa-fw fa-building" outcome="/GestaoEmpresas" />
+                    <p:menuitem value="Usuários" icon="fa fa-fw fa-users" outcome="/CadastroUsuario" />
+                    <p:menuitem value="Clientes" icon="fa fa-fw fa-handshake" outcome="/Clientes" />
                 </p:submenu>
                 
                 <p:submenu label="Sistema">
-                    <p:menuitem value="Sair" icon="pi pi-sign-out" action="#{loginBean.logout}" />
+                    <p:menuitem value="Sair" icon="fa fa-fw fa-sign-out" action="#{loginBean.logout}" />
                 </p:submenu>
             </p:menu>
         </h:form>

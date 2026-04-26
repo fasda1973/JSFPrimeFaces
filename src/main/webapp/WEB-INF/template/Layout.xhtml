@@ -17,6 +17,7 @@
 	</f:facet>
 	
 	<link rel="stylesheet" href="https://unpkg.com/primeicons/primeicons.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
 </h:head>
 
@@ -32,10 +33,16 @@
 		    </a>
         </header>
 		-->
-		
-        <h2>
-            <ui:insert name="titulo" />
-        </h2>
+<!--		
+		<h:panelGroup layout="block" styleClass="titulo-centralizado">
+	        <h2>
+	            <ui:insert name="titulo" />
+	        </h2>
+        </h:panelGroup>
+-->
+		<div class="titulo-pagina-container">
+		    <ui:insert name="titulo" />
+		</div>
 
         <div id="conteudo">
             <ui:insert name="conteudo" />

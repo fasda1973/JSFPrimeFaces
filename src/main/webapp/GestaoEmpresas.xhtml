@@ -1,13 +1,17 @@
-<ui:composition template="/WEB-INF/template/templateCRUD.xhtml"
+<ui:composition 
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
-     xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:f="http://java.sun.com/jsf/core"
     xmlns:p="http://primefaces.org/ui"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="/WEB-INF/template/templateCRUD.xhtml">
 
     <ui:param name="managedBean" value="#{gestaoEmpresasBean}" />
 
-    <ui:define name="titulo">Gestão de Empresas</ui:define>
+    <ui:define name="titulo">
+    	<i class="fa fa-building"></i>
+    	<span>Empresas</span>
+    </ui:define>
 
     <ui:define name="pesquisa">
         <p:inputText id="termoPesquisa" placeholder="Pesquisar empresa..." 

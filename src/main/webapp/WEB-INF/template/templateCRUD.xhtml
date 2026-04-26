@@ -19,7 +19,7 @@
                     
                     <span class="ui-separator"><span class="pi pi-ellipsis-v" /></span>
                     
-                    <p:commandButton value="Nova" icon="pi pi-plus" 
+                    <p:commandButton value="Novo" icon="pi pi-plus" 
                         actionListener="#{managedBean.prepararNovo}"
                         oncomplete="PF('widgetVarDialog').show()"
                         update="dialogId" process="@this">
@@ -53,7 +53,7 @@
                 <ui:insert name="colunas" />
             </p:dataTable>
 
-            <p:dialog id="dialogId" header="Cadastro de Empresa" widgetVar="widgetVarDialog" modal="true" resizable="false" closeOnEscape="true">               
+            <p:dialog id="dialogId" header="Novo Cadastro" widgetVar="widgetVarDialog" modal="true" resizable="false" closeOnEscape="true">               
                 
                 <p:messages id="dialogMessages" />
                 
@@ -65,8 +65,8 @@
 	                    <h:outputLabel />
 	                    <p:commandButton value="Salvar"
 	                    				 actionListener="#{managedBean.salvar}"
-	                        			 update="gridCampos dialogMessages"
-	                        			 process="dialogId"
+	                        			 update="frm:dataTable frm:messages"
+	                        			 process="@this dialogId"
 	                        			 oncomplete="if (!args.validationFailed) PF('widgetVarDialog').hide()" />
 	                </h:panelGrid>
                 </h:panelGroup>

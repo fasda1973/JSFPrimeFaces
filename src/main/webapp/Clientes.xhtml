@@ -1,21 +1,30 @@
-<ui:composition template="/WEB-INF/template/templateCRUD.xhtml"
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
     xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui">
-
-    <ui:param name="managedBean" value="#{gestaoClientesBean}" />
-
-    <ui:define name="pesquisa_campos">
-        <p:inputText id="termoPesquisa" value="#{gestaoClientesBean.termoPesquisa}" placeholder="Nome do cliente..." />
+    template="/WEB-INF/template/templateCRUD.xhtml">
+    
+    <ui:param name="managedBean" value="#{clienteBean}" />
+   
+    <ui:define name="titulo">    	
+    	<i class="fa fa-handshake"></i>
+    	<span>Clientes</span>
     </ui:define>
 
-    <ui:define name="tabela_colunas">
-        <p:column headerText="Nome">#{item.nome}</p:column>
-        <p:column headerText="CPF">#{item.cpf}</p:column>
+    <ui:define name="pesquisa">
+        <p:inputText id="termoPesquisa" placeholder="Pesquisar cliente..." 
+                     size="30" value="#{clienteBean.termoPesquisa}" />
     </ui:define>
-
-    <ui:define name="formulario_campos">
-        <p:outputLabel value="Nome" for="nome" />
-        <p:inputText id="nome" value="#{gestaoClientesBean.entidade.nome}" />
+    
+    <ui:define name="colunas">
+        <p:column headerText="Nome Cliente">#{item.nomeCliente}</p:column>
     </ui:define>
-
+    
+    <ui:define name="campos_formulario">
+	    <p:outputLabel value="Nome Cliente" for="nomeCliente" />
+	    <p:inputText id="nomeCliente" value="#{clienteBean.entidade.nomeCliente}" />
+	</ui:define>
+	
 </ui:composition>

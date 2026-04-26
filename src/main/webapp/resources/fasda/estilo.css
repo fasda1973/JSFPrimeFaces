@@ -78,6 +78,18 @@ h1 {
     background-color: #34495e !important;
 }
 
+/* Garante que o ícone do menu tenha um respiro padrão do texto */
+.menu-customizado .ui-menuitem-icon {
+    margin-right: 8px !important;
+    text-align: center;
+    color: #555; /* Cor uniforme para todos os ícones do menu */
+}
+
+/* Alinha o texto do menu para não ficar colado */
+.menu-customizado .ui-menuitem-text {
+    vertical-align: middle;
+}
+
 /* Espaço para o menu lateral em telas grandes */
 .layout-content {
     margin-left: 0; /* Começa ocupando a tela toda */
@@ -227,3 +239,23 @@ body.menu-aberto .layout-content {
     padding: 0 15px;
     height: 60px;
 }
+
+.titulo-pagina-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.titulo-pagina-container i {
+    font-size: 1.5rem;
+    margin-right: 10px;
+    vertical-align: middle;
+    color: #2c3e50; /* Uma cor padrão para todos os ícones */
+}
+
+.titulo-pagina-container span {
+    vertical-align: middle;
+    font-weight: bold;
+    color: #444;
+    font-size: 18px;
+}
+

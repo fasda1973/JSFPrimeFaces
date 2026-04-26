@@ -19,11 +19,11 @@
         </header>
      	
      	<div class="topbar-items">
-		    <p:menuButton value="#{loginBean.nomeUsuario}" icon="pi pi-user" styleClass="btn-usuario-menu">
-		        <p:menuitem value="Meu Perfil" icon="pi pi-id-card" outcome="/Perfil" />
-		        <p:menuitem value="Configurações" icon="pi pi-cog" outcome="/Config" />
+		    <p:menuButton value="#{loginBean.nomeUsuario}" icon="fa fa-user" styleClass="btn-usuario-menu">
+		        <p:menuitem value="Meu Perfil" icon="fa fa-id-card" outcome="/Perfil" />
+		        <p:menuitem value="Configurações" icon="fa fa-cog" outcome="/Config" />
 		        <p:separator />
-		        <p:menuitem value="Sair" action="#{loginBean.logout}" icon="pi pi-power-off" />
+		        <p:menuitem value="Sair" action="#{loginBean.logout}" icon="fa fa-power-off" />
 		    </p:menuButton>
 		</div>
     </h:form>
