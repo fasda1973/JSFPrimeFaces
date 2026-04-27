@@ -1,6 +1,5 @@
 package br.com.fasda.erp.controller;
 
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,7 +16,6 @@ import br.com.fasda.erp.model.TipoEmpresa;
 import br.com.fasda.erp.repository.Empresas;
 import br.com.fasda.erp.repository.RamoAtividades;
 import br.com.fasda.erp.service.CadastroEmpresaService;
-import br.com.fasda.erp.util.FacesMessages;
 
 @Named
 @ViewScoped

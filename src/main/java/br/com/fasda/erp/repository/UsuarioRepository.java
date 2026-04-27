@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
-import br.com.fasda.erp.model.Cliente;
 import br.com.fasda.erp.model.Usuario;
 import br.com.fasda.erp.util.Transacional;
 
