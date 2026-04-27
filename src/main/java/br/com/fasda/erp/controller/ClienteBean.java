@@ -1,11 +1,7 @@
 package br.com.fasda.erp.controller;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -13,11 +9,8 @@ import javax.inject.Named;
 import org.primefaces.PrimeFaces;
 
 import br.com.fasda.erp.model.Cliente;
-import br.com.fasda.erp.model.Empresa;
 import br.com.fasda.erp.repository.ClienteRepository;
 import br.com.fasda.erp.service.CadastroClienteService;
-import br.com.fasda.erp.util.FacesMessages;
-import br.com.fasda.erp.util.Transacional;
 
 @Named
 @ViewScoped

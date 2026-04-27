@@ -1,65 +1,86 @@
 package br.com.fasda.erp.controller;
 
-import java.io.Serializable;
-import java.util.List;
+import java.util.Arrays;
 
-import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.primefaces.PrimeFaces;
+
 import br.com.fasda.erp.model.Usuario;
 import br.com.fasda.erp.repository.UsuarioRepository;
-import br.com.fasda.erp.util.FacesMessages;
-import br.com.fasda.erp.util.Transacional;
+import br.com.fasda.erp.service.CadastroUsuarioService;
 
 @Named
 @ViewScoped
-public class CadastroUsuarioBean implements Serializable {
+public class CadastroUsuarioBean extends CrudBean<Usuario> {
+	
     private static final long serialVersionUID = 1L;
 
     @Inject
-    private UsuarioRepository usuarios;	
+    private CadastroUsuarioService cadastroUsuarioService;
     
     @Inject
-    private FacesMessages messages;
+    private UsuarioRepository usuariosRepository;	
     
-    private List<Usuario> listaUsuarios;
-    private Usuario usuario = new Usuario();
-
-    @PostConstruct
-    public void consultar() {
-        listaUsuarios = usuarios.todos();
+    // --- MÉTODOS OBRIGATÓRIOS (OVERRIDE) ---
+    
+    @Override
+    public void pesquisar() {   	
+    	if (termoPesquisa == null || termoPesquisa.trim().isEmpty()) {
+    		this.listaItens = usuariosRepository.todos(); // Traz tudo se não houver filtro
+    	} else {
+            this.listaItens = usuariosRepository.pesquisar(this.termoPesquisa);
+        }
+	}
+    
+    @Override
+    public void salvar() {        
+    	// Usamos 'entidade' que vem do CrudBean (substitui 'usuario')
+        cadastroUsuarioService.salvar(this.entidade);
+        atualizarRegistros();
+        messages.info("Usuario salvo com sucesso!");
+                
+        PrimeFaces.current().ajax().update(Arrays.asList("frm:dataTable", "frm:messages"));
     }
     
-    @Transacional
-    public void salvar() {
-        try {
-            usuarios.guardar(usuario);
-            consultar();
-            usuario = new Usuario(); // Limpa o formulário
-            messages.info("Usuário cadastrado com sucesso!");
-        } catch (Exception e) {
-            messages.error("Erro ao cadastrar usuário: " + e.getMessage());
+    @Override
+    public void excluir() {
+    	cadastroUsuarioService.excluir(this.entidade);
+    	this.entidade = null;
+    	atualizarRegistros(); // Atualiza a lista após remover
+        messages.info("Usuário excluído com sucesso!");
+    }
+    
+    @Override
+    public void prepararNovo() {
+        this.entidade = new Usuario();
+    }
+    
+    @Override
+    public void prepararEdicao() {
+        
+    }
+    
+    @Override
+    protected Object getEntidadeId(Usuario usuario) {
+        return usuario.getId();
+    }
+    
+    public void todosUsuarios() {
+        this.listaItens = usuariosRepository.todos();
+    }
+    
+    private void atualizarRegistros() {
+        if (jaHouvePesquisa()) {
+            pesquisar();
+        } else {
+            todosUsuarios();
         }
     }
     
-    @Transacional
-    public void excluir(Usuario usuarioSelecionado) {
-        usuarios.remover(usuarioSelecionado);
-        consultar(); // Atualiza a lista após remover
-        messages.info("Usuário excluído com sucesso!");
-    }
-
-    public Usuario getUsuario() { return usuario; }
-    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
-
-	public List<Usuario> getListaUsuarios() {
-		return listaUsuarios;
-	}
-
-	public void setListaUsuarios(List<Usuario> listaUsuarios) {
-		this.listaUsuarios = listaUsuarios;
-	}
-    
-    
+    private boolean jaHouvePesquisa() {
+        return termoPesquisa != null && !termoPesquisa.isEmpty();
+    }   
 }

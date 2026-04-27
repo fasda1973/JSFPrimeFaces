@@ -6,15 +6,57 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
+
+import br.com.fasda.erp.model.Cliente;
 import br.com.fasda.erp.model.Usuario;
 import br.com.fasda.erp.util.Transacional;
 
 public class UsuarioRepository implements Serializable {
+	
     private static final long serialVersionUID = 1L;
 
     @Inject
     private EntityManager manager;
+    
+    public UsuarioRepository() {
 
+	}
+    
+    public UsuarioRepository(EntityManager manager) {
+		this.manager = manager;
+	}
+    
+    public Usuario porId(Long id) {
+        return manager.find(Usuario.class, id);
+    }
+    
+    public List<Usuario> pesquisar(String nome) {
+		String jpql = "from Usuario where nomeUsuario like :nomeUsuario";
+		
+		TypedQuery<Usuario> query = manager.createQuery(jpql,Usuario.class);
+		
+		query.setParameter("nomeUsuario", nome + "%");
+
+		return query.getResultList();
+	}
+    
+    public List<Usuario> todos() {
+        return manager.createQuery("from Usuario", Usuario.class).getResultList();
+    }
+    
+    @Transacional
+    public Usuario guardar(Usuario usuario) {
+        // Como é uma inserção, precisamos de uma transação se não estiver usando @Transactional
+        return manager.merge(usuario);
+    }
+    
+    public void remover(Usuario usuario) {
+    	usuario = porId(usuario.getId());
+		manager.remove(usuario);
+    }
+    
+    /* PRA TELA DE LOGIN (CUIDADO AO MODIFICAR) */
     public Usuario porLogin(String nomeUsuario, String senha) {
         try {
             return manager.createQuery("from Usuario where nomeUsuario = :nome and senha = :senha", Usuario.class)
@@ -24,24 +66,6 @@ public class UsuarioRepository implements Serializable {
         } catch (NoResultException e) {
             return null; // Usuário ou senha incorretos
         }
-    }
-    
-    @Transacional
-    public void guardar(Usuario usuario) {
-        // Como é uma inserção, precisamos de uma transação se não estiver usando @Transactional
-        this.manager.merge(usuario);
-    }
-    
-    public List<Usuario> todos() {
-        return manager.createQuery("from Usuario", Usuario.class).getResultList();
-    }
-
-    public Usuario porId(Long id) {
-        return manager.find(Usuario.class, id);
-    }
-
-    public void remover(Usuario usuario) {
-        this.manager.remove(this.manager.getReference(Usuario.class, usuario.getId()));
     }
     
 }
