@@ -13,20 +13,20 @@
                 <f:facet name="left">
                     <ui:insert name="pesquisa" />
                     
-                    <p:commandButton value="Pesquisar" icon="pi pi-search"
+                    <p:commandButton value="Pesquisar" icon="fa fa-search"
                         actionListener="#{managedBean.pesquisar}" update="dataTable messages"
                         process="@this termoPesquisa" style="margin-left: 5px" />
                     
                     <span class="ui-separator"><span class="pi pi-ellipsis-v" /></span>
                     
-                    <p:commandButton value="Novo" icon="pi pi-plus" 
+                    <p:commandButton value="Novo" icon="fa fa-plus" 
                         actionListener="#{managedBean.prepararNovo}"
                         oncomplete="PF('widgetVarDialog').show()"
                         update="dialogId" process="@this">
                         <p:resetInput target="dialogId" />
                     </p:commandButton>
                     
-                    <p:commandButton value="Editar" icon="pi pi-pencil"
+                    <p:commandButton value="Editar" icon="fa fa-pencil"
                         disabled="#{not managedBean.itemSelecionado}"
                         actionListener="#{managedBean.prepararEdicao}"
                         oncomplete="PF('widgetVarDialog').show()"
@@ -34,7 +34,7 @@
                         <p:resetInput target="dialogId" />
                     </p:commandButton>
 
-                    <p:commandButton value="Excluir" icon="pi pi-trash"
+                    <p:commandButton value="Excluir" icon="fa fa-trash"
                         disabled="#{not managedBean.itemSelecionado}"
                         actionListener="#{managedBean.excluir}"
                         update="messages dataTable toolbar" process="@this">

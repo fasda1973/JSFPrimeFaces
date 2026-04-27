@@ -259,3 +259,22 @@ body.menu-aberto .layout-content {
     font-size: 18px;
 }
 
+.footer-container {
+    display: flex;
+    justify-content: space-between; /* Empurra o texto para a esquerda e o ícone para a direita */
+    align-items: center;            /* Alinha verticalmente no meio */
+    padding: 10px 20px;
+    background-color: #f4f4f4;      /* Cor de exemplo */
+    border-top: 1px solid #ddd;
+}
+
+.github-icon {
+    font-size: 1.5rem;
+    color: #333;
+    transition: color 0.3s;
+    margin-left: auto; /* Isso empurra o elemento para o máximo à direita dentro de um container flex */
+}
+
+.github-icon:hover {
+    color: #4078c0; /* Cor clássica do GitHub no hover */
+}
