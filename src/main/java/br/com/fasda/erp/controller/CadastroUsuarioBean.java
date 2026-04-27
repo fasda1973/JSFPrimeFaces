@@ -1,18 +1,26 @@
 package br.com.fasda.erp.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.PrimeFaces;
+import org.primefaces.event.FileUploadEvent;
 
 import br.com.fasda.erp.model.Usuario;
 import br.com.fasda.erp.repository.UsuarioRepository;
 import br.com.fasda.erp.service.CadastroUsuarioService;
 
-@Named
+@Named("cadastroUsuarioBean")	
 @ViewScoped
 public class CadastroUsuarioBean extends CrudBean<Usuario> {
 	
@@ -82,5 +90,30 @@ public class CadastroUsuarioBean extends CrudBean<Usuario> {
     
     private boolean jaHouvePesquisa() {
         return termoPesquisa != null && !termoPesquisa.isEmpty();
-    }   
+    }
+    
+    public void handleFileUpload(FileUploadEvent event) {
+        try {
+            // 1. Define o caminho da pasta (Pode ser no C:/uploads ou /home/user/uploads)
+            String caminhoDestino = "/home/erp/uploads/fotos/"; 
+            File pasta = new File(caminhoDestino);
+            if (!pasta.exists()) pasta.mkdirs();
+
+            // 2. Cria o nome do arquivo (Dica: use o ID do usuário ou timestamp para evitar nomes iguais)
+            String nomeArquivo = System.currentTimeMillis() + "_" + event.getFile().getFileName();
+            File arquivoFinal = new File(pasta, nomeArquivo);
+
+            // 3. Salva o arquivo no servidor
+            Files.copy(event.getFile().getInputStream(), arquivoFinal.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+            // 4. Atualiza o objeto Usuario para salvar o CAMINHO no banco depois
+            this.entidade.setFotoCaminho(nomeArquivo);
+            
+            FacesContext.getCurrentInstance().addMessage(null, 
+                new FacesMessage("Sucesso", "Foto " + nomeArquivo + " enviada!"));
+                
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

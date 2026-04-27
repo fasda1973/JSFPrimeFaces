@@ -1,0 +1,1 @@
+ALTER TABLE usuario ADD COLUMN foto_caminho VARCHAR(255);

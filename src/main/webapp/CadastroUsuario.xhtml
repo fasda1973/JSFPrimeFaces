@@ -30,6 +30,16 @@
 	    <p:password id="senha" value="#{cadastroUsuarioBean.entidade.senha}" 
 	    	required="true" feedback="true"
             weakLabel="Fraca" goodLabel="Boa" strongLabel="Forte"/>
+            
+        <p:outputLabel for="foto" value="Foto do Perfil:" />
+		<p:fileUpload id="foto" 
+		              listener="#{cadastroUsuarioBean.handleFileUpload}" 
+		              mode="advanced" 
+		              update="messages" 
+		              auto="true" 
+		              sizeLimit="2000000" 
+		              allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+		              label="Escolher" />
 	</ui:define>
 <!--
 <ui:composition 

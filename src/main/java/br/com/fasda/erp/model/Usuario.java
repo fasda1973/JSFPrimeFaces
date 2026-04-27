@@ -17,8 +17,11 @@ public class Usuario implements Serializable {
 
     @Column(nullable = false)
     private String senha;
+    
+    @Column(name = "foto_caminho")
+    private String fotoCaminho; // Este nome deve ser igual ao que você usou no set
 
-    // Getters e Setters
+	// Getters e Setters
 	public String getNomeUsuario() {
 		return nomeUsuario;
 	}
@@ -41,6 +44,14 @@ public class Usuario implements Serializable {
 
 	public void setId(Long id) {
 	    this.id = id;
+	}
+	
+	public String getFotoCaminho() {
+		return fotoCaminho;
+	}
+
+	public void setFotoCaminho(String fotoCaminho) {
+		this.fotoCaminho = fotoCaminho;
 	}
     
 }
