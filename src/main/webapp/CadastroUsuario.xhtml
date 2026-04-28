@@ -17,9 +17,11 @@
         <p:inputText id="termoPesquisa" placeholder="Pesquisar usuário..." 
                      size="30" value="#{cadastroUsuarioBean.termoPesquisa}" />
     </ui:define>
-    
+   
     <ui:define name="colunas">
-        <p:column headerText="Nome Usuário">#{item.nomeUsuario}</p:column>
+        <p:column headerText="Usuário" style="width: 200px;">#{item.nomeUsuario}</p:column>
+        
+        <p:column headerText="Nome">#{item.nome}</p:column>
         
         <p:column headerText="Perfil" style="width: 60px; text-align: center;">
 		    <p:graphicImage value="/fotos/#{item.fotoCaminho}" 
@@ -32,9 +34,9 @@
 		    </h:panelGroup>
 		</p:column>
     </ui:define>
-    
+   
     <ui:define name="campos_formulario">
-
+   		
     	<h:panelGroup id="fotoPanel" layout="block" style="text-align: center; margin-bottom: 15px;">    
 		    <p:graphicImage value="/fotos/#{cadastroUsuarioBean.entidade.fotoCaminho}" 
                 cache="false"
@@ -44,82 +46,37 @@
 		    <p:graphicImage library="barcelona-layout" name="images/avatar.png" 
 		                    style="width: 120px; height: 120px; border-radius: 50%;"
 		                    rendered="#{cadastroUsuarioBean.entidade.fotoCaminho == null}" />
-		</h:panelGroup> 
-	    	    
-	    <p:outputLabel value="Nome Usuario" for="nomeUsuario" />
-	    <p:inputText id="nomeUsuario" value="#{cadastroUsuarioBean.entidade.nomeUsuario}" />
+		</h:panelGroup>
+		
+		<div>
+			<p:outputLabel value="Nome Completo" for="nome" />
+			<p:inputText id="nome" value="#{cadastroUsuarioBean.entidade.nome}" 
+			             required="true" maxlength="100"
+			             placeholder="Ex: Flávio Almeida" /> 
+		             
+		    	    
+		    <p:outputLabel value="Usuario" for="nomeUsuario" />
+		    <p:inputText id="nomeUsuario" value="#{cadastroUsuarioBean.entidade.nomeUsuario}" />
 	    
-	    <p:outputLabel value="Senha" for="senha" />
-	    <p:password id="senha" value="#{cadastroUsuarioBean.entidade.senha}" 
-	    	required="true" feedback="true"
-            weakLabel="Fraca" goodLabel="Boa" strongLabel="Forte"/>
-            
-        <p:outputLabel for="foto" value="Foto do Perfil:" />
-		<p:fileUpload id="foto" 
-		              listener="#{cadastroUsuarioBean.handleFileUpload}" 
-		              mode="advanced" 
-		              update="messages" 
-		              auto="true" 
-		              sizeLimit="2000000" 
-		              allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
-		              label="Escolher" />
+		    
+		    <p:outputLabel value="Senha" for="senha" />
+		    <p:password id="senha" value="#{cadastroUsuarioBean.entidade.senha}" 
+		    	required="true" feedback="true"
+	            weakLabel="Fraca" goodLabel="Boa" strongLabel="Forte"/>
+	           
+	        <!--    
+	        <p:outputLabel for="foto" value="Foto do Perfil:" />
+	        -->
+	  		<span>Foto do Perfil:</span>
+			<p:fileUpload id="foto" 
+			              listener="#{cadastroUsuarioBean.handleFileUpload}" 
+			              mode="advanced" 
+			              update="messages" 
+			              auto="true" 
+			              sizeLimit="2000000" 
+			              allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+			              label="Escolher" />
+		</div>
 	</ui:define>
-<!--
-<ui:composition 
-	xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:f="http://xmlns.jcp.org/jsf/core"
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-    template="/WEB-INF/template/Layout.xhtml"> 
-    
-    <ui:define name="conteudo">
-        <h:form id="frm">
-            <p:messages autoUpdate="true" closable="true" />
 
-            <p:panel header="Novo Usuário" style="margin-top: 20px">
-                <p:panelGrid columns="2" id="painel" styleClass="ui-noborder">
-                    <p:outputLabel value="Nome de Usuário" for="nome" />
-                    <p:inputText id="nome" value="#{cadastroUsuarioBean.usuario.nomeUsuario}" required="true" />
-
-                    <p:outputLabel value="Senha" for="senha" />
-                    <p:password id="senha" value="#{cadastroUsuarioBean.usuario.senha}" 
-                                required="true" feedback="true" promptLabel="Digite uma senha"
-                                weakLabel="Fraca" goodLabel="Boa" strongLabel="Forte" />
-
-                    <h:panelGroup />
-                    <p:commandButton value="Salvar" action="#{cadastroUsuarioBean.salvar}" update="frm" icon="ui-icon-save" />
-                </p:panelGrid>
-            </p:panel>
-            
-            <p:dataTable value="#{cadastroUsuarioBean.listaUsuarios}" var="user"
-                     style="margin-top: 20px" emptyMessage="Nenhum usuário encontrado.">
-            
-	            <p:column headerText="ID" width="50">
-	                <h:outputText value="#{user.id}" />
-	            </p:column>
-	            
-	            <p:column headerText="Usuário">
-	                <h:outputText value="#{user.nomeUsuario}" />
-	            </p:column>
-	
-	            <p:column headerText="Ações" width="100">
-	                <p:commandButton icon="ui-icon-edit" update=":frm:painel" process="@this">
-	                    <f:setPropertyActionListener value="#{user}" target="#{cadastroUsuarioBean.usuario}" />
-	                </p:commandButton>
-	
-	                <p:commandButton icon="ui-icon-trash" action="#{cadastroUsuarioBean.excluir(user)}"
-	                                 update=":frm" process="@this">
-	                    <p:confirm header="Confirmação" message="Excluir este usuário?" icon="ui-icon-report-problem" />
-	                </p:commandButton>
-	            </p:column>
-        	</p:dataTable>
-        	
-        	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-	            <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
-	            <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
-        	</p:confirmDialog>
-        </h:form>
-    </ui:define>
-    -->
 </ui:composition>
