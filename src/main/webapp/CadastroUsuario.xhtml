@@ -20,9 +20,32 @@
     
     <ui:define name="colunas">
         <p:column headerText="Nome Usuário">#{item.nomeUsuario}</p:column>
+        
+        <p:column headerText="Perfil" style="width: 60px; text-align: center;">
+		    <p:graphicImage value="/fotos/#{item.fotoCaminho}" 
+		                    cache="false" 
+		                    style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover; object-position: 50% 10%;"
+		                    rendered="#{item.fotoCaminho != null}" />
+		    
+		    <h:panelGroup rendered="#{item.fotoCaminho == null}">
+		        <i class="pi pi-user" style="font-size: 1.5rem; color: #ccc;"></i>
+		    </h:panelGroup>
+		</p:column>
     </ui:define>
     
     <ui:define name="campos_formulario">
+
+    	<h:panelGroup id="fotoPanel" layout="block" style="text-align: center; margin-bottom: 15px;">    
+		    <p:graphicImage value="/fotos/#{cadastroUsuarioBean.entidade.fotoCaminho}" 
+                cache="false"
+                style="width: 120px; height: 120px; border-radius: 50%;"
+                rendered="#{cadastroUsuarioBean.entidade.fotoCaminho != null}" />
+		
+		    <p:graphicImage library="barcelona-layout" name="images/avatar.png" 
+		                    style="width: 120px; height: 120px; border-radius: 50%;"
+		                    rendered="#{cadastroUsuarioBean.entidade.fotoCaminho == null}" />
+		</h:panelGroup> 
+	    	    
 	    <p:outputLabel value="Nome Usuario" for="nomeUsuario" />
 	    <p:inputText id="nomeUsuario" value="#{cadastroUsuarioBean.entidade.nomeUsuario}" />
 	    

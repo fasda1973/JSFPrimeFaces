@@ -2,19 +2,22 @@ package br.com.fasda.erp.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.FileInputStream;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.PhaseId;
 import javax.faces.view.ViewScoped;
-
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 import br.com.fasda.erp.model.Usuario;
 import br.com.fasda.erp.repository.UsuarioRepository;
@@ -92,10 +95,11 @@ public class CadastroUsuarioBean extends CrudBean<Usuario> {
         return termoPesquisa != null && !termoPesquisa.isEmpty();
     }
     
+    /* Salva o local da imagem(Ex: Foto do usuário) no banco */
     public void handleFileUpload(FileUploadEvent event) {
         try {
             // 1. Define o caminho da pasta (Pode ser no C:/uploads ou /home/user/uploads)
-            String caminhoDestino = "/home/erp/uploads/fotos/"; 
+            String caminhoDestino = "C:/Dev/Java/fasda_erp/uploads/fotos"; 
             File pasta = new File(caminhoDestino);
             if (!pasta.exists()) pasta.mkdirs();
 
@@ -116,4 +120,5 @@ public class CadastroUsuarioBean extends CrudBean<Usuario> {
             e.printStackTrace();
         }
     }
+    
 }
