@@ -24,6 +24,9 @@
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.MySQL5Dialect" />
 
+			<property name="hibernate.hbm2ddl.auto"
+				value="validate" />
+			
 			<!-- ATENÇÃO!!! As 03(três) linhas abaixo não devem serem colocadas em 
 				produção, ou seja, devem serem EXCLUIDAS. -->
 			<!--

@@ -10,20 +10,28 @@ public class FlywayConfig implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        System.out.println("Iniciando Migração do Banco de Dados com Flyway...");
-        
-        try {
-            Flyway flyway = Flyway.configure()
-                .dataSource("jdbc:mysql://localhost:3306/cursojsfprimefaces", "root", "brcd2605")
-                .baselineOnMigrate(true)
-                .load();
+                
+    	try {
+    	    System.out.println("Iniciando Migração do Banco de Dados com Flyway...");
 
-            flyway.migrate();
-            
-            System.out.println("Migração concluída com sucesso!");
-        } catch (Exception e) {
-            System.err.println("ERRO AO RODAR FLYWAY: " + e.getMessage());
-        }
+    	    // Criando o DataSource manualmente para garantir a conexão
+    	    com.mysql.cj.jdbc.MysqlDataSource dataSource = new com.mysql.cj.jdbc.MysqlDataSource();
+    	    dataSource.setURL("jdbc:mysql://localhost:3306/cursojsfprimefaces?useSSL=false&allowPublicKeyRetrieval=true");
+    	    dataSource.setUser("root");
+    	    dataSource.setPassword("brcd2605");
+
+    	    Flyway flyway = Flyway.configure()
+    	        .dataSource(dataSource) // Passamos o objeto pronto, não apenas a String
+    	        .baselineOnMigrate(true) // Importante se você já tem tabelas
+    	        .baselineVersion("2") // Aqui está o segredo! Começa a versionar a partir de V003__
+    	        .load();
+    	    
+    	    flyway.migrate();
+    	    System.out.println("Migração finalizada com sucesso!");
+
+    	} catch (Exception e) {
+    	    e.printStackTrace(); // Use printStackTrace para ver o erro completo no console
+    	}
     }
 
     @Override
