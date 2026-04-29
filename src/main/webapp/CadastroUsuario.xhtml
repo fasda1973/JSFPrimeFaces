@@ -36,8 +36,9 @@
     </ui:define>
    
     <ui:define name="campos_formulario">
-   		
-    	<h:panelGroup id="fotoPanel" layout="block" style="text-align: center; margin-bottom: 15px;">    
+       		
+    	<h:panelGroup id="fotoPanel" layout="block" style="text-align: center; margin-bottom: 20px;">
+    	    
 		    <p:graphicImage value="/fotos/#{cadastroUsuarioBean.entidade.fotoCaminho}" 
                 cache="false"
                 style="width: 120px; height: 120px; border-radius: 50%;"
@@ -50,26 +51,31 @@
 		
 		<div>
 			<p:outputLabel value="Nome Completo" for="nome" />
-			<p:inputText id="nome" value="#{cadastroUsuarioBean.entidade.nome}" 
+			<p:inputText id="nome" value="#{cadastroUsuarioBean.entidade.nome}"
+						 size="30" 
 			             required="true" maxlength="100"
 			             placeholder="Ex: Flávio Almeida" /> 
 		             
 		    	    
 		    <p:outputLabel value="Usuario" for="nomeUsuario" />
-		    <p:inputText id="nomeUsuario" value="#{cadastroUsuarioBean.entidade.nomeUsuario}" />
+		    <p:inputText id="nomeUsuario" value="#{cadastroUsuarioBean.entidade.nomeUsuario}" 
+		    			 size="30" />
 	    
 		    
 		    <p:outputLabel value="Senha" for="senha" />
-		    <p:password id="senha" value="#{cadastroUsuarioBean.entidade.senha}" 
-		    	required="true" feedback="true"
-	            weakLabel="Fraca" goodLabel="Boa" strongLabel="Forte"/>
+		    <p:password id="senha" value="#{cadastroUsuarioBean.entidade.senha}"
+		    			required="#{cadastroUsuarioBean.entidade.id == null}" 
+		    			feedback="true"
+		    			size="30"
+		    			placeholder="#{cadastroUsuarioBean.entidade.id == null ? 'Digite a senha' : 'Deixe em branco para manter a atual'}"
+	            		weakLabel="Fraca" goodLabel="Boa" strongLabel="Forte"/>
 	           
 	        <!--    
 	        <p:outputLabel for="foto" value="Foto do Perfil:" />
 	        -->
-	  		<span>Foto do Perfil:</span>
+	  		<span>Foto do Perfil</span>
 			<p:fileUpload id="foto" 
-			              listener="#{cadastroUsuarioBean.handleFileUpload}" 
+			              listener="#{cadastroUsuarioBean.handleFileUpload}"
 			              mode="advanced" 
 			              update="messages" 
 			              auto="true" 

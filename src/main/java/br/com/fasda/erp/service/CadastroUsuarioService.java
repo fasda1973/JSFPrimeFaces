@@ -17,6 +17,12 @@ public class CadastroUsuarioService implements Serializable {
 	
 	@Transacional
 	public void salvar(Usuario usuario) {
+		// Se for edição e a senha estiver vazia, recuperamos a senha antiga do banco
+	    if (usuario.getId() != null && (usuario.getSenha() == null || usuario.getSenha().isEmpty())) {
+	        String senhaAtual = usuariorepository.buscarSenhaAtual(usuario.getId());
+	        usuario.setSenha(senhaAtual);
+	    }
+		
 		usuariorepository.guardar(usuario);
 	}
 	

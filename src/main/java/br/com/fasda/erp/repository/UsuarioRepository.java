@@ -66,5 +66,11 @@ public class UsuarioRepository implements Serializable {
             return null; // Usuário ou senha incorretos
         }
     }
+
+	public String buscarSenhaAtual(Long id) {
+		return manager.createQuery("select u.senha from Usuario u where u.id = :id", String.class)
+				.setParameter("id", id)
+	            .getSingleResult();
+	}
     
 }

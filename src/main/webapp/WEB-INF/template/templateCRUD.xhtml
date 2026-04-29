@@ -6,6 +6,7 @@
     template="/WEB-INF/template/Layout.xhtml">
 
     <ui:define name="conteudo">
+    
         <h:form id="frm">
             <p:messages id="messages" />
 
@@ -52,11 +53,10 @@
 
                 <ui:insert name="colunas" />
             </p:dataTable>
-
+			
             <p:dialog id="dialogId" header="Novo Cadastro" widgetVar="widgetVarDialog" modal="true" resizable="false" closeOnEscape="true">               
                 
                 <p:messages id="dialogMessages" />
-                
                 <h:panelGroup id="painelCampos">
 	                <h:panelGrid columns="2" id="gridCampos" rendered="#{managedBean.entidade ne null}">
 	                    
@@ -68,6 +68,7 @@
 	                        			 update="frm:dataTable frm:messages"
 	                        			 process="@this dialogId"
 	                        			 oncomplete="if (!args.validationFailed) PF('widgetVarDialog').hide()" />
+	     
 	                </h:panelGrid>
                 </h:panelGroup>
             </p:dialog>
