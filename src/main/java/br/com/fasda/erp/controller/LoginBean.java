@@ -29,7 +29,7 @@ public class LoginBean implements Serializable {
     	
         // Lógica simples para exemplo (você pode buscar no banco depois)
     	if (this.usuarioLogado != null) {
-            return "/GestaoEmpresas?faces-redirect=true";
+            return "/Dashboard?faces-redirect=true";
         } else {
             FacesContext.getCurrentInstance().addMessage(null, 
                 new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário ou senha inválidos", null));

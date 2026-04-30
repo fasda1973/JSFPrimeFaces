@@ -87,5 +87,11 @@ public class UsuarioRepository implements Serializable {
 	    
 	    return query.getSingleResult() > 0;
 	}
+	
+	// DashBoard
+	public Long contarTodos() {
+	    return manager.createQuery("select count(u) from Usuario u", Long.class)
+	                  .getSingleResult();
+	}
     
 }
