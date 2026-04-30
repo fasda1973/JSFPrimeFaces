@@ -50,4 +50,9 @@ public class Empresas implements Serializable {
 		empresa = porId(empresa.getId());
 		manager.remove(empresa);
 	}
+	
+	public Long contarTodas() {
+	    return manager.createQuery("select count(e) from Empresa e", Long.class)
+	                  .getSingleResult();
+	}
 }

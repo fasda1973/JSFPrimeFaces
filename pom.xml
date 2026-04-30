@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>br.com.fasda</groupId>
-	<artifactId>curso-jsf-e-primefaces-essencial</artifactId>
+	<artifactId>fasda-erp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>curso-jsf-e-primefaces-essencial</name>
+	<name>fasda-erp</name>
 	<description>Curso JSF e Primefaces Essencial</description>
 	
 	<properties>

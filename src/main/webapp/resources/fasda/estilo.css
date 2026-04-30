@@ -278,3 +278,14 @@ body.menu-aberto .layout-content {
 .github-icon:hover {
     color: #4078c0; /* Cor clássica do GitHub no hover */
 }
+
+/* Classe para dar o efeito de flutuar ao passar o mouse */
+.card-dashboard {
+    transition: all 0.3s ease; /* Faz a transição ser suave */
+    cursor: pointer;
+}
+
+.card-dashboard:hover {
+    transform: translateY(-5px); /* Sobe o card em 5 pixels */
+    box-shadow: 0 12px 20px rgba(0,0,0,0.2) !important; /* Aumenta a sombra */
+}
