@@ -2,26 +2,23 @@ package br.com.fasda.erp.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.FileInputStream;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.event.PhaseId;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
 
 import br.com.fasda.erp.model.Usuario;
 import br.com.fasda.erp.repository.UsuarioRepository;
 import br.com.fasda.erp.service.CadastroUsuarioService;
+import br.com.fasda.erp.util.NegocioException;
 
 @Named("cadastroUsuarioBean")	
 @ViewScoped
@@ -47,13 +44,25 @@ public class CadastroUsuarioBean extends CrudBean<Usuario> {
 	}
     
     @Override
-    public void salvar() {        
+    public void salvar() {
+    	try {
     	// Usamos 'entidade' que vem do CrudBean (substitui 'usuario')
-        cadastroUsuarioService.salvar(this.entidade);
+    	cadastroUsuarioService.salvar(this.entidade); // Tenta salvar através do Service
+    	
         atualizarRegistros();
+        
+        // Se chegou aqui, deu certo!
         messages.info("Usuario salvo com sucesso!");
+        
+        // limpar o formulário após salvar:
+        this.entidade = new Usuario();
                 
         PrimeFaces.current().ajax().update(Arrays.asList("frm:dataTable", "frm:messages"));
+        
+    	} catch (NegocioException e) {
+    		// Usando o novo método que criamos para direcionar ao campo específico
+            messages.error("frm:nomeUsuario", e.getMessage());
+    	}
     }
     
     @Override
@@ -118,6 +127,25 @@ public class CadastroUsuarioBean extends CrudBean<Usuario> {
                 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+    
+    // Verifica disponibilidade de nome de usuario
+    public void verificarDisponibilidade() {
+        String login = entidade.getNomeUsuario();
+        
+        if (login != null && !login.trim().isEmpty()) {
+            // Busca no repositório se já existe alguém com esse login
+            boolean jaExiste = usuariosRepository.existeLogin(login, entidade.getId());
+            
+            if (jaExiste) {
+                FacesContext context = FacesContext.getCurrentInstance();
+                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário já cadastrado", null);
+                
+                // O segredo está aqui: o primeiro parâmetro é o "Client ID" do componente
+                // Se o campo estiver dentro de um form 'frm', o ID costuma ser 'frm:nomeUsuario'
+                context.addMessage("frm:nomeUsuario", msg);
+            }
         }
     }
     

@@ -56,11 +56,16 @@
 			             required="true" maxlength="100"
 			             placeholder="Ex: Flávio Almeida" /> 
 		             
-		    	    
-		    <p:outputLabel value="Usuario" for="nomeUsuario" />
+		   	    
+		    <p:outputLabel value="Usuário" for="nomeUsuario" />
 		    <p:inputText id="nomeUsuario" value="#{cadastroUsuarioBean.entidade.nomeUsuario}" 
-		    			 size="30" />
-	    
+		    			 size="30" required="true" >
+	    		<p:ajax event="blur" listener="#{cadastroUsuarioBean.verificarDisponibilidade}" update="msgUsuario" />
+	    		
+	    	</p:inputText>
+	    	
+	    	<div></div>
+	    	<p:message id="msgUsuario" for="nomeUsuario" display="text" />	    
 		    
 		    <p:outputLabel value="Senha" for="senha" />
 		    <p:password id="senha" value="#{cadastroUsuarioBean.entidade.senha}"

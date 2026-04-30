@@ -72,5 +72,20 @@ public class UsuarioRepository implements Serializable {
 				.setParameter("id", id)
 	            .getSingleResult();
 	}
+	
+	public boolean existeLogin(String login, Long idAtual) {
+	    String jpql = "select count(u) from Usuario u where u.nomeUsuario = :login";
+	    if (idAtual != null) {
+	        jpql += " and u.id != :id";
+	    }
+	    
+	    TypedQuery<Long> query = manager.createQuery(jpql, Long.class);
+	    query.setParameter("login", login);
+	    if (idAtual != null) {
+	        query.setParameter("id", idAtual);
+	    }
+	    
+	    return query.getSingleResult() > 0;
+	}
     
 }
