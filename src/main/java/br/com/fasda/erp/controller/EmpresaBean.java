@@ -13,24 +13,24 @@ import org.primefaces.PrimeFaces;
 import br.com.fasda.erp.model.Empresa;
 import br.com.fasda.erp.model.RamoAtividade;
 import br.com.fasda.erp.model.TipoEmpresa;
-import br.com.fasda.erp.repository.Empresas;
+import br.com.fasda.erp.repository.EmpresaRepository;
 import br.com.fasda.erp.repository.RamoAtividades;
-import br.com.fasda.erp.service.CadastroEmpresaService;
+import br.com.fasda.erp.service.EmpresaService;
 
 @Named
 @ViewScoped
-public class GestaoEmpresasBean extends CrudBean<Empresa> {
+public class EmpresaBean extends CrudBean<Empresa> {
 
     private static final long serialVersionUID = 1L;
 
     @Inject
-    private Empresas empresas;
+    private EmpresaRepository empresaRepository;
 
     @Inject
     private RamoAtividades ramoAtividades;
 
     @Inject
-    private CadastroEmpresaService cadastroEmpresaService;
+    private EmpresaService empresaService;
 
     private Converter ramoAtividadeConverter;
 
@@ -39,16 +39,16 @@ public class GestaoEmpresasBean extends CrudBean<Empresa> {
     @Override
     public void pesquisar() {
         if (termoPesquisa == null || termoPesquisa.trim().isEmpty()) {
-            this.listaItens = empresas.todas(); // Traz tudo se não houver filtro
+            this.listaItens = empresaRepository.todas(); // Traz tudo se não houver filtro
         } else {
-            this.listaItens = empresas.pesquisar(this.termoPesquisa);
+            this.listaItens = empresaRepository.pesquisar(this.termoPesquisa);
         }
     }
 
     @Override
     public void salvar() {
         // Usamos 'entidade' que vem do CrudBean (substitui 'empresa')
-        cadastroEmpresaService.salvar(this.entidade);
+        empresaService.salvar(this.entidade);
         atualizarRegistros();
         messages.info("Empresa salva com sucesso!!!");
         
@@ -57,7 +57,7 @@ public class GestaoEmpresasBean extends CrudBean<Empresa> {
 
     @Override
     public void excluir() {
-        cadastroEmpresaService.excluir(this.entidade);
+        empresaService.excluir(this.entidade);
         this.entidade = null;
         atualizarRegistros();
         messages.info("Empresa excluída com sucesso!!!");
@@ -81,7 +81,7 @@ public class GestaoEmpresasBean extends CrudBean<Empresa> {
     // --- MÉTODOS ESPECÍFICOS DE EMPRESA ---
 
     public void todasEmpresas() {
-        this.listaItens = empresas.todas();
+        this.listaItens = empresaRepository.todas();
     }
 
     public List<RamoAtividade> CompletarRamoAtividade(String termo) {

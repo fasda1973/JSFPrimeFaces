@@ -9,18 +9,18 @@ import javax.persistence.TypedQuery;
 
 import br.com.fasda.erp.model.Empresa;
 
-public class Empresas implements Serializable {
+public class EmpresaRepository implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private EntityManager manager;
 
-	public Empresas() {
+	public EmpresaRepository() {
 
 	}
 
-	public Empresas(EntityManager manager) {
+	public EmpresaRepository(EntityManager manager) {
 		this.manager = manager;
 	}
 

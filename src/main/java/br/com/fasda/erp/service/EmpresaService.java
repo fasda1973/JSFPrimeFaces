@@ -5,24 +5,24 @@ import java.io.Serializable;
 import javax.inject.Inject;
 
 import br.com.fasda.erp.model.Empresa;
-import br.com.fasda.erp.repository.Empresas;
+import br.com.fasda.erp.repository.EmpresaRepository;
 import br.com.fasda.erp.util.Transacional;
 
-public class CadastroEmpresaService implements Serializable {
+public class EmpresaService implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
-	private Empresas empresas;
+	private EmpresaRepository empresaRepository;
 	
 	@Transacional
 	public void salvar(Empresa empresa) {
-		empresas.guardar(empresa);
+		empresaRepository.guardar(empresa);
 	}
 	
 	@Transacional
 	public void excluir(Empresa empresa) {
-		empresas.remover(empresa);
+		empresaRepository.remover(empresa);
 	}
 
 }

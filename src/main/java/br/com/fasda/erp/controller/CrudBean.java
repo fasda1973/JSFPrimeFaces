@@ -17,7 +17,7 @@ public abstract class CrudBean<T> implements Serializable {
     protected List<T> listaItens;
     protected String termoPesquisa;
 
-    // Métodos abstratos: O "Filho" (ex: GestaoEmpresasBean) OBRIGATORIAMENTE deve implementar
+    // Métodos abstratos: O "Filho" (ex: EmpresaBean) OBRIGATORIAMENTE deve implementar
     public abstract void pesquisar();
     public abstract void salvar();
     public abstract void excluir();

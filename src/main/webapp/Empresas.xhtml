@@ -6,7 +6,7 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     template="/WEB-INF/template/templateCRUD.xhtml">
 
-    <ui:param name="managedBean" value="#{gestaoEmpresasBean}" />
+    <ui:param name="managedBean" value="#{empresaBean}" />
     
     <ui:define name="tituloHead">Empresas</ui:define>
 
@@ -17,7 +17,7 @@
 
     <ui:define name="pesquisa">
         <p:inputText id="termoPesquisa" placeholder="Pesquisar empresa..." 
-                     size="30" value="#{gestaoEmpresasBean.termoPesquisa}" />
+                     size="30" value="#{empresaBean.termoPesquisa}" />
     </ui:define>
 
     <ui:define name="colunas">
@@ -28,28 +28,28 @@
 
     <ui:define name="campos_formulario">
 	    <p:outputLabel value="Razão Social" for="razaoSocial" />
-	    <p:inputText id="razaoSocial" value="#{gestaoEmpresasBean.entidade.razaoSocial}" />
+	    <p:inputText id="razaoSocial" value="#{empresaBean.entidade.razaoSocial}" />
 	    
 	    <p:outputLabel value="Nome Fantasia" for="nomeFantasia" />
-	    <p:inputText id="nomeFantasia" value="#{gestaoEmpresasBean.entidade.nomeFantasia}" />
+	    <p:inputText id="nomeFantasia" value="#{empresaBean.entidade.nomeFantasia}" />
 	
 	    <p:outputLabel value="Tipo Empresa" for="tipo" />
-	    <p:selectOneMenu id="tipo" value="#{gestaoEmpresasBean.entidade.tipo}">
+	    <p:selectOneMenu id="tipo" value="#{empresaBean.entidade.tipo}">
 	        <f:selectItem itemLabel="Selecione..." />
-	        <f:selectItems value="#{gestaoEmpresasBean.tiposEmpresa}" var="t" 
+	        <f:selectItems value="#{empresaBean.tiposEmpresa}" var="t" 
 	                       itemLabel="#{t.descricao}" itemValue="#{t}" />
 	    </p:selectOneMenu>
 	
 	    <p:outputLabel value="CNPJ" for="cnpj" />
-	    <p:inputMask id="cnpj" mask="99.999.999/9999-99" value="#{gestaoEmpresasBean.entidade.cnpj}" />
+	    <p:inputMask id="cnpj" mask="99.999.999/9999-99" value="#{empresaBean.entidade.cnpj}" />
 	
 	    <p:outputLabel value="Data Fundação" for="dataFundacao" />
-	    <p:calendar id="dataFundacao" pattern="dd/MM/yyyy" value="#{gestaoEmpresasBean.entidade.dataFundacao}" />
+	    <p:calendar id="dataFundacao" pattern="dd/MM/yyyy" value="#{empresaBean.entidade.dataFundacao}" />
 	
 	    <p:outputLabel value="Ramo Atividade" for="ramoAtividade" />
-	    <p:autoComplete id="ramoAtividade" value="#{gestaoEmpresasBean.entidade.ramoAtividade}"
-	                    completeMethod="#{gestaoEmpresasBean.CompletarRamoAtividade}"
-	                    converter="#{gestaoEmpresasBean.ramoAtividadeConverter}"
+	    <p:autoComplete id="ramoAtividade" value="#{empresaBean.entidade.ramoAtividade}"
+	                    completeMethod="#{empresaBean.CompletarRamoAtividade}"
+	                    converter="#{empresaBean.ramoAtividadeConverter}"
 	                    var="ramo" itemLabel="#{ramo.descricao}" itemValue="#{ramo}" />
 	</ui:define>
 

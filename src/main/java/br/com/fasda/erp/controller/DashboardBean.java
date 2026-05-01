@@ -11,7 +11,7 @@ import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.ChartSeries;
 
-import br.com.fasda.erp.repository.Empresas;
+import br.com.fasda.erp.repository.EmpresaRepository;
 import br.com.fasda.erp.repository.UsuarioRepository;
 
 @Named
@@ -22,7 +22,7 @@ public class DashboardBean implements Serializable {
     @Inject
     private UsuarioRepository usuarioRepository;    
     @Inject
-    private Empresas empresaRepository;
+    private EmpresaRepository empresaRepository;
 
     private Long totalUsuarios;
     private Long totalEmpresas;
@@ -42,9 +42,9 @@ public class DashboardBean implements Serializable {
         serieUsuarios.setLabel("Usuários");
         serieUsuarios.set("Cadastros", totalUsuarios); // O nome do eixo X deve ser igual
 
-        // Série 2: Empresas (Ficará Verde)
+        // Série 2: EmpresaRepository (Ficará Verde)
         ChartSeries serieEmpresas = new ChartSeries();
-        serieEmpresas.setLabel("Empresas");
+        serieEmpresas.setLabel("EmpresaRepository");
         serieEmpresas.set("Cadastros", totalEmpresas);
 
         barModel.addSeries(serieUsuarios);
