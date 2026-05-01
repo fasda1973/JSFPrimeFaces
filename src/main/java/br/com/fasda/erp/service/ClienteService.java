@@ -8,7 +8,7 @@ import br.com.fasda.erp.model.Cliente;
 import br.com.fasda.erp.repository.ClienteRepository;
 import br.com.fasda.erp.util.Transacional;
 
-public class CadastroClienteService implements Serializable {
+public class ClienteService implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	

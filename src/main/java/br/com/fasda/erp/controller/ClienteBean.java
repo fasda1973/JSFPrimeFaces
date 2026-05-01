@@ -10,7 +10,7 @@ import org.primefaces.PrimeFaces;
 
 import br.com.fasda.erp.model.Cliente;
 import br.com.fasda.erp.repository.ClienteRepository;
-import br.com.fasda.erp.service.CadastroClienteService;
+import br.com.fasda.erp.service.ClienteService;
 
 @Named
 @ViewScoped
@@ -19,7 +19,7 @@ public class ClienteBean extends CrudBean<Cliente> {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-    private CadastroClienteService cadastroClienteService;
+    private ClienteService clienteService;
 
     @Inject
     private ClienteRepository clientesRepository;	
@@ -38,7 +38,7 @@ public class ClienteBean extends CrudBean<Cliente> {
     @Override
     public void salvar() {        
     	// Usamos 'entidade' que vem do CrudBean (substitui 'cliente')
-        cadastroClienteService.salvar(this.entidade);
+        clienteService.salvar(this.entidade);
         atualizarRegistros();
         messages.info("Cliente salvo com sucesso!");
                 
@@ -47,7 +47,7 @@ public class ClienteBean extends CrudBean<Cliente> {
     
     @Override
     public void excluir() {
-    	cadastroClienteService.excluir(this.entidade);
+    	clienteService.excluir(this.entidade);
         this.entidade = null;
         atualizarRegistros(); // Atualiza a lista após remover
         messages.info("Cliente excluído com sucesso!");
