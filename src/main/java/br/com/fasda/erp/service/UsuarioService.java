@@ -9,7 +9,7 @@ import br.com.fasda.erp.repository.UsuarioRepository;
 import br.com.fasda.erp.util.NegocioException;
 import br.com.fasda.erp.util.Transacional;
 
-public class CadastroUsuarioService implements Serializable {
+public class UsuarioService implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	

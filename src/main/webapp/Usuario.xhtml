@@ -6,7 +6,7 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     template="/WEB-INF/template/templateCRUD.xhtml">
     
-    <ui:param name="managedBean" value="#{cadastroUsuarioBean}" />
+    <ui:param name="managedBean" value="#{usuarioBean}" />
     
     <ui:define name="tituloHead">Usuários</ui:define>
    
@@ -17,7 +17,7 @@
     
     <ui:define name="pesquisa">
         <p:inputText id="termoPesquisa" placeholder="Pesquisar usuário..." 
-                     size="30" value="#{cadastroUsuarioBean.termoPesquisa}" />
+                     size="30" value="#{usuarioBean.termoPesquisa}" />
     </ui:define>
    
     <ui:define name="colunas">
@@ -41,28 +41,28 @@
        		
     	<h:panelGroup id="fotoPanel" layout="block" style="text-align: center; margin-bottom: 20px;">
     	    
-		    <p:graphicImage value="/fotos/#{cadastroUsuarioBean.entidade.fotoCaminho}" 
+		    <p:graphicImage value="/fotos/#{usuarioBean.entidade.fotoCaminho}" 
                 cache="false"
                 style="width: 120px; height: 120px; border-radius: 50%;"
-                rendered="#{cadastroUsuarioBean.entidade.fotoCaminho != null}" />
+                rendered="#{usuarioBean.entidade.fotoCaminho != null}" />
 		
 		    <p:graphicImage library="barcelona-layout" name="images/avatar.png" 
 		                    style="width: 120px; height: 120px; border-radius: 50%;"
-		                    rendered="#{cadastroUsuarioBean.entidade.fotoCaminho == null}" />
+		                    rendered="#{usuarioBean.entidade.fotoCaminho == null}" />
 		</h:panelGroup>
 		
 		<div>
 			<p:outputLabel value="Nome Completo" for="nome" />
-			<p:inputText id="nome" value="#{cadastroUsuarioBean.entidade.nome}"
+			<p:inputText id="nome" value="#{usuarioBean.entidade.nome}"
 						 size="30" 
 			             required="true" maxlength="100"
 			             placeholder="Ex: Flávio Almeida" /> 
 		             
 		   	    
 		    <p:outputLabel value="Usuário" for="nomeUsuario" />
-		    <p:inputText id="nomeUsuario" value="#{cadastroUsuarioBean.entidade.nomeUsuario}" 
+		    <p:inputText id="nomeUsuario" value="#{usuarioBean.entidade.nomeUsuario}" 
 		    			 size="30" required="true" >
-	    		<p:ajax event="blur" listener="#{cadastroUsuarioBean.verificarDisponibilidade}" update="msgUsuario" />
+	    		<p:ajax event="blur" listener="#{usuarioBean.verificarDisponibilidade}" update="msgUsuario" />
 	    		
 	    	</p:inputText>
 	    	
@@ -70,11 +70,11 @@
 	    	<p:message id="msgUsuario" for="nomeUsuario" display="text" />	    
 		    
 		    <p:outputLabel value="Senha" for="senha" />
-		    <p:password id="senha" value="#{cadastroUsuarioBean.entidade.senha}"
-		    			required="#{cadastroUsuarioBean.entidade.id == null}" 
+		    <p:password id="senha" value="#{usuarioBean.entidade.senha}"
+		    			required="#{usuarioBean.entidade.id == null}" 
 		    			feedback="true"
 		    			size="30"
-		    			placeholder="#{cadastroUsuarioBean.entidade.id == null ? 'Digite a senha' : 'Deixe em branco para manter a atual'}"
+		    			placeholder="#{usuarioBean.entidade.id == null ? 'Digite a senha' : 'Deixe em branco para manter a atual'}"
 	            		weakLabel="Fraca" goodLabel="Boa" strongLabel="Forte"/>
 	           
 	        <!--    
@@ -82,7 +82,7 @@
 	        -->
 	  		<span>Foto do Perfil</span>
 			<p:fileUpload id="foto" 
-			              listener="#{cadastroUsuarioBean.handleFileUpload}"
+			              listener="#{usuarioBean.handleFileUpload}"
 			              mode="advanced" 
 			              update="messages" 
 			              auto="true" 

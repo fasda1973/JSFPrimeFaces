@@ -17,17 +17,17 @@ import org.primefaces.event.FileUploadEvent;
 
 import br.com.fasda.erp.model.Usuario;
 import br.com.fasda.erp.repository.UsuarioRepository;
-import br.com.fasda.erp.service.CadastroUsuarioService;
+import br.com.fasda.erp.service.UsuarioService;
 import br.com.fasda.erp.util.NegocioException;
 
-@Named("cadastroUsuarioBean")	
+@Named	
 @ViewScoped
-public class CadastroUsuarioBean extends CrudBean<Usuario> {
+public class UsuarioBean extends CrudBean<Usuario> {
 	
     private static final long serialVersionUID = 1L;
 
     @Inject
-    private CadastroUsuarioService cadastroUsuarioService;
+    private UsuarioService usuarioService;
     
     @Inject
     private UsuarioRepository usuariosRepository;	
@@ -47,7 +47,7 @@ public class CadastroUsuarioBean extends CrudBean<Usuario> {
     public void salvar() {
     	try {
     	// Usamos 'entidade' que vem do CrudBean (substitui 'usuario')
-    	cadastroUsuarioService.salvar(this.entidade); // Tenta salvar através do Service
+    	usuarioService.salvar(this.entidade); // Tenta salvar através do Service
     	
         atualizarRegistros();
         
@@ -67,7 +67,7 @@ public class CadastroUsuarioBean extends CrudBean<Usuario> {
     
     @Override
     public void excluir() {
-    	cadastroUsuarioService.excluir(this.entidade);
+    	usuarioService.excluir(this.entidade);
     	this.entidade = null;
     	atualizarRegistros(); // Atualiza a lista após remover
         messages.info("Usuário excluído com sucesso!");
