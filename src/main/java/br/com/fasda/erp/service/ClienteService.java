@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import br.com.fasda.erp.model.Cliente;
 import br.com.fasda.erp.repository.ClienteRepository;
+import br.com.fasda.erp.util.NegocioException;
 import br.com.fasda.erp.util.Transacional;
 
 public class ClienteService implements Serializable {
@@ -16,7 +17,9 @@ public class ClienteService implements Serializable {
 	private ClienteRepository clienterepository;
 	
 	@Transacional
-	public void salvar(Cliente cliente) {
+	public void salvar(Cliente cliente) throws NegocioException {
+		
+		
 		clienterepository.guardar(cliente);
 	}
 	

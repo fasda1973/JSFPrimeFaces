@@ -9,23 +9,27 @@ public class FacesMessages implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
+	private void add(String clientId, String summary, String detail, FacesMessage.Severity severity) {
+	    FacesContext context = FacesContext.getCurrentInstance();
+	    // Agora passamos os dois valores diferentes
+	    FacesMessage msg = new FacesMessage(severity, summary, detail);
+	    
+	    context.addMessage(clientId, msg); // Agora ele usa o ID se você passar
+	    context.getExternalContext().getFlash().setKeepMessages(true); // Isso é muito útil quando você cadastra algo e volta(fizer um Redirect) para a tela de consulta
+	}
+	
+	// Sobrecarregue o método para quando só quiser passar uma frase
 	public void info(String message) {
-	    add(null, message, FacesMessage.SEVERITY_INFO);
+	    add(null, "Informação", message, FacesMessage.SEVERITY_INFO);
 	}
 
 	public void error(String message) {
-	    add(null, message, FacesMessage.SEVERITY_ERROR);
+	    add(null, null, message, FacesMessage.SEVERITY_ERROR);
 	}
 	
 	// NOVO: Método para erro em campo específico
 	public void error(String clientId, String message) {
-	    add(clientId, message, FacesMessage.SEVERITY_ERROR);
+	    add(clientId, null, message, FacesMessage.SEVERITY_ERROR);
 	}
 	
-	private void add(String clientId, String message, FacesMessage.Severity severity) {
-	    FacesContext context = FacesContext.getCurrentInstance();
-	    FacesMessage msg = new FacesMessage(message);
-	    msg.setSeverity(severity);
-	    context.addMessage(clientId, msg); // Agora ele usa o ID se você passar
-	}
 }

@@ -11,6 +11,7 @@ import org.primefaces.PrimeFaces;
 import br.com.fasda.erp.model.Cliente;
 import br.com.fasda.erp.repository.ClienteRepository;
 import br.com.fasda.erp.service.ClienteService;
+import br.com.fasda.erp.util.NegocioException;
 
 @Named
 @ViewScoped
@@ -36,13 +37,22 @@ public class ClienteBean extends CrudBean<Cliente> {
 	}
            
     @Override
-    public void salvar() {        
-    	// Usamos 'entidade' que vem do CrudBean (substitui 'cliente')
-        clienteService.salvar(this.entidade);
-        atualizarRegistros();
-        messages.info("Cliente salvo com sucesso!");
-                
-        PrimeFaces.current().ajax().update(Arrays.asList("frm:dataTable", "frm:messages"));
+    public void salvar() { 
+    	try{	    		
+	    	// Usamos 'entidade' que vem do CrudBean (substitui 'cliente')
+	        clienteService.salvar(this.entidade);
+	        atualizarRegistros();
+	        messages.info("Cliente salvo com sucesso!");
+	                
+	        PrimeFaces.current().ajax().update(Arrays.asList("frm:dataTable"));
+	    
+    	} catch (NegocioException e) {
+    		// Erro de regra de negócio amigável
+            messages.error(e.getMessage());
+    	} catch (Exception e) {
+    		// Erro inesperado
+            messages.error("Ocorreu um erro inesperado ao salvar.");
+    	}
     }
     
     @Override

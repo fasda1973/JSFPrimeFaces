@@ -9,6 +9,9 @@
     
         <h:form id="frm">
             <p:messages id="messages" />
+            
+            <!-- O 'life' define quanto tempo a mensagem fica na tela (3000ms = 3s) -->
+			<p:growl id="msgs" showDetail="true" showSummary="true" life="3000" />
 
             <p:toolbar id="toolbar">
                 <f:facet name="left">
@@ -38,7 +41,7 @@
                     <p:commandButton value="Excluir" icon="fa fa-trash"
                         disabled="#{not managedBean.itemSelecionado}"
                         actionListener="#{managedBean.excluir}"
-                        update="messages dataTable toolbar" process="@this">
+                        update="msgs dataTable toolbar" process="@this">
                         <p:confirm icon="pi pi-exclamation-triangle" header="Confirmação" message="Excluir este registro?" />
                     </p:commandButton>
                 </f:facet>
@@ -65,7 +68,7 @@
 	                    <h:outputLabel />
 	                    <p:commandButton value="Salvar"
 	                    				 actionListener="#{managedBean.salvar}"
-	                        			 update="frm:dataTable frm:messages"
+	                        			 update="msgs"
 	                        			 process="@this dialogId"
 	                        			 oncomplete="if (!args.validationFailed) PF('widgetVarDialog').hide()" />
 	     

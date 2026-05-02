@@ -3,6 +3,8 @@ package br.com.fasda.erp.model;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 @Entity
 @Table(name = "cliente")
 public class Cliente implements Serializable {
@@ -11,7 +13,8 @@ public class Cliente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
+    @NotBlank // Garante que não seja nulo nem vazio ("")
     @Column(name = "nome_cliente", nullable = false)
     private String nomeCliente;
 
