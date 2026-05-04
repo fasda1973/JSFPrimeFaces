@@ -24,12 +24,12 @@ public class FacesMessages implements Serializable {
 	}
 
 	public void error(String message) {
-	    add(null, null, message, FacesMessage.SEVERITY_ERROR);
+	    add(null, "Erro", message, FacesMessage.SEVERITY_ERROR);
 	}
 	
 	// NOVO: Método para erro em campo específico
 	public void error(String clientId, String message) {
-	    add(clientId, null, message, FacesMessage.SEVERITY_ERROR);
+	    add(clientId, "Erro", message, FacesMessage.SEVERITY_ERROR);
 	}
 	
 }

@@ -38,7 +38,8 @@ public class ClienteBean extends CrudBean<Cliente> {
            
     @Override
     public void salvar() { 
-    	try{	    		
+    	try{
+    		
 	    	// Usamos 'entidade' que vem do CrudBean (substitui 'cliente')
 	        clienteService.salvar(this.entidade);
 	        atualizarRegistros();

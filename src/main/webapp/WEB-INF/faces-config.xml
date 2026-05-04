@@ -10,6 +10,10 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
     version="2.2">
 	-->
+	<application>
+	    <message-bundle>br.com.fasda.erp.Messages</message-bundle>
+	</application>
+	
 	<managed-bean>
         <managed-bean-name>guestPreferences</managed-bean-name>
         <managed-bean-class>org.primefaces.barcelona.view.GuestPreferences</managed-bean-class>
