@@ -1,0 +1,58 @@
+package br.com.fasda.erp.service;
+
+import java.io.Serializable;
+
+import javax.inject.Inject;
+
+import br.com.fasda.erp.model.Cliente;
+import br.com.fasda.erp.model.Pessoa;
+import br.com.fasda.erp.model.PessoaFisica;
+import br.com.fasda.erp.model.PessoaJuridica;
+import br.com.fasda.erp.repository.PessoaRepository;
+import br.com.fasda.erp.util.NegocioException;
+import br.com.fasda.erp.util.Transacional;
+
+public class PessoaService implements Serializable {
+
+    @Inject
+    private PessoaRepository repository;
+
+    @Transacional
+    public void salvar(Pessoa pessoa) throws NegocioException {
+        // 1. Validações comuns (Ex: Nome obrigatório)
+        if (pessoa.getNome() == null || pessoa.getNome().isEmpty()) {
+            throw new NegocioException("O nome é obrigatório.");
+        }
+
+        // 2. Validações específicas por tipo (O pulo do gato!)
+        if (pessoa instanceof PessoaFisica) {
+            validarCPF((PessoaFisica) pessoa);
+        } else if (pessoa instanceof PessoaJuridica) {
+            validarCNPJ((PessoaJuridica) pessoa);
+        }
+
+        // 3. Persistência única
+        // O Hibernate fará o INSERT na tabela 'pessoa' 
+        // e na 'pessoa_fisica' ou 'pessoa_juridica' num piscar de olhos.
+        repository.guardar(pessoa);
+    }
+    
+    @Transacional
+	public void excluir(Pessoa pessoa) {
+		repository.remover(pessoa);
+	}
+    
+    private void validarCPF(PessoaFisica pf) throws NegocioException {
+        if (pf.getCpf() == null || pf.getCpf().length() < 11) {
+            throw new NegocioException("CPF inválido.");
+        }
+        // Aqui você pode colocar a lógica real de validação de CPF
+    }
+
+    private void validarCNPJ(PessoaJuridica pj) throws NegocioException {
+        if (pj.getCnpj() == null || pj.getCnpj().length() < 14) {
+            throw new NegocioException("CNPJ inválido.");
+        }
+        // Aqui você pode colocar a lógica real de validação de CNPJ
+    }
+}

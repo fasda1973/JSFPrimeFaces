@@ -15,6 +15,7 @@ import javax.inject.Named;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.FileUploadEvent;
 
+import br.com.fasda.erp.model.Pessoa;
 import br.com.fasda.erp.model.Usuario;
 import br.com.fasda.erp.repository.UsuarioRepository;
 import br.com.fasda.erp.service.UsuarioService;
@@ -30,7 +31,12 @@ public class UsuarioBean extends CrudBean<Usuario> {
     private UsuarioService usuarioService;
     
     @Inject
-    private UsuarioRepository usuariosRepository;	
+    private UsuarioRepository usuariosRepository;
+    
+    public UsuarioBean() {
+        // Passamos a classe Pessoa para o CrudBean
+        super(Usuario.class);
+    }
     
     // --- MÉTODOS OBRIGATÓRIOS (OVERRIDE) ---
     

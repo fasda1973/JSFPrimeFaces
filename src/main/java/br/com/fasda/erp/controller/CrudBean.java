@@ -16,6 +16,14 @@ public abstract class CrudBean<T> implements Serializable {
     protected T entidade;
     protected List<T> listaItens;
     protected String termoPesquisa;
+    
+    // 1. ADICIONE ESTA LINHA:
+    protected Class<T> classeEntidade;
+
+    // 2. ADICIONE ESTE CONSTRUTOR:
+    public CrudBean(Class<T> classeEntidade) {
+        this.classeEntidade = classeEntidade;
+    }
 
     // Métodos abstratos: O "Filho" (ex: EmpresaBean) OBRIGATORIAMENTE deve implementar
     public abstract void pesquisar();

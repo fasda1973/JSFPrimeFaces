@@ -9,6 +9,7 @@ import javax.inject.Named;
 import org.primefaces.PrimeFaces;
 
 import br.com.fasda.erp.model.Cliente;
+import br.com.fasda.erp.model.Pessoa;
 import br.com.fasda.erp.repository.ClienteRepository;
 import br.com.fasda.erp.service.ClienteService;
 import br.com.fasda.erp.util.NegocioException;
@@ -23,7 +24,12 @@ public class ClienteBean extends CrudBean<Cliente> {
     private ClienteService clienteService;
 
     @Inject
-    private ClienteRepository clientesRepository;	
+    private ClienteRepository clientesRepository;
+    
+    public ClienteBean() {
+        // Passamos a classe Cliente para o CrudBean
+        super(Cliente.class);
+    }
     
     // --- MÉTODOS OBRIGATÓRIOS (OVERRIDE) ---
     

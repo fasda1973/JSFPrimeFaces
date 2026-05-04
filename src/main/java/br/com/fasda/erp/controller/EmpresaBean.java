@@ -11,6 +11,7 @@ import javax.inject.Named;
 import org.primefaces.PrimeFaces;
 
 import br.com.fasda.erp.model.Empresa;
+import br.com.fasda.erp.model.Pessoa;
 import br.com.fasda.erp.model.RamoAtividade;
 import br.com.fasda.erp.model.TipoEmpresa;
 import br.com.fasda.erp.repository.EmpresaRepository;
@@ -33,6 +34,11 @@ public class EmpresaBean extends CrudBean<Empresa> {
     private EmpresaService empresaService;
 
     private Converter ramoAtividadeConverter;
+    
+    public EmpresaBean() {
+        // Passamos a classe Pessoa para o CrudBean
+        super(Empresa.class);
+    }
 
     // --- MÉTODOS OBRIGATÓRIOS (OVERRIDE) ---
 
