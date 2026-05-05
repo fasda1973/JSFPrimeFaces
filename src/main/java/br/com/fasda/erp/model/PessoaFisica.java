@@ -13,9 +13,10 @@ import org.hibernate.validator.constraints.br.CPF;
 public class PessoaFisica extends Pessoa {
 
     @CPF // Bean Validation
-    @Column(length = 14)
+    @Column(name = "cpf", length = 14)
     private String cpf;
-
+    
+    @Column(name = "rg")
     private String rg;
     
     // Getters e Setters...

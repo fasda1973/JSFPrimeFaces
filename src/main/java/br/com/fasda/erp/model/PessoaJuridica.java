@@ -13,10 +13,10 @@ import org.hibernate.validator.constraints.br.CNPJ;
 public class PessoaJuridica extends Pessoa {
 
     @CNPJ // Bean Validation
-    @Column(length = 18)
+    @Column(name = "cnpj", length = 18)
     private String cnpj;
     
-    @Column
+    @Column(name = "inscricao_estadual")
     private String inscricaoEstadual;
 
     // Getters e Setters...

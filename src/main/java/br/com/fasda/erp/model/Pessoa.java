@@ -23,9 +23,10 @@ public abstract class Pessoa implements Serializable {
     private Long id;
 
     @NotBlank
-    @Column(nullable = false, length = 100)
+    @Column(name = "nome", nullable = false, length = 100)
     private String nome;
     
+    @Column(name = "email")
     private String email;
 
     // Flags que definem o que essa pessoa representa no sistema
