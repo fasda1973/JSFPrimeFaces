@@ -1,10 +1,11 @@
 package br.com.fasda.erp.service;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.inject.Inject;
 
-import br.com.fasda.erp.model.Cliente;
+import br.com.fasda.erp.model.DadosCliente;
 import br.com.fasda.erp.model.Pessoa;
 import br.com.fasda.erp.model.PessoaFisica;
 import br.com.fasda.erp.model.PessoaJuridica;
@@ -29,6 +30,19 @@ public class PessoaService implements Serializable {
             validarCPF((PessoaFisica) pessoa);
         } else if (pessoa instanceof PessoaJuridica) {
             validarCNPJ((PessoaJuridica) pessoa);
+        }
+        
+        if (pessoa.isCliente()) {
+            if (pessoa.getDadosCliente() == null) {
+                pessoa.setDadosCliente(new DadosCliente());
+            }
+            // Vincula o "pai" ao "filho" para o @MapsId funcionar
+            pessoa.getDadosCliente().setPessoa(pessoa);
+            
+            // Aqui você poderia validar o limite de crédito, por exemplo
+            if (pessoa.getDadosCliente().getLimiteCredito() == null) {
+                pessoa.getDadosCliente().setLimiteCredito(BigDecimal.ZERO);
+            }
         }
 
         // 3. Persistência única

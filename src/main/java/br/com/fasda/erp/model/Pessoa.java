@@ -2,13 +2,16 @@ package br.com.fasda.erp.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -39,6 +42,8 @@ public abstract class Pessoa implements Serializable {
     @Column(name = "is_funcionario")
     private boolean funcionario;
 
+    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private DadosCliente dadosCliente;
 	
     // Getters e Setters...
     public Long getId() {
@@ -87,6 +92,14 @@ public abstract class Pessoa implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public DadosCliente getDadosCliente() {
+		return dadosCliente;
+	}
+
+	public void setDadosCliente(DadosCliente dadosCliente) {
+		this.dadosCliente = dadosCliente;
 	}
    
 }
