@@ -89,6 +89,7 @@ public class PerfilBean implements Serializable {
                     this.usuario.setLogin(null); 
                     return;
                 }
+                System.out.println("Senha novo perfil: " + novaSenha);
                 
                 // Atribui a senha limpa. Deixe a criptografia APENAS dentro do UsuarioService para não duplicar!
                 usuario.setSenha(novaSenha);
@@ -118,6 +119,8 @@ public class PerfilBean implements Serializable {
                         context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", "A nova senha e a confirmação não coincidem!"));
                         return;
                     }
+                    
+                    System.out.println("Senha perfil edição: " + novaSenha);
                     
                     usuario.setSenha(novaSenha);
                 }

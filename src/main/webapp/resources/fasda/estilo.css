@@ -430,3 +430,46 @@ body.menu-aberto .layout-content {
     filter: brightness(1.1);
 }
 
+/* Trata o ícone da foto para ser SEMPRE um círculo perfeito */
+.btn-usuario-menu .perfil-com-foto {
+    background-image: url("#{request.contextPath}/img-pessoas/#{loginBean.usuarioLogado.fotoCaminho}?v=#{loginBean.usuarioLogado.fotoCaminho}") !important;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center 20% !important; 
+    
+    /* Força largura e altura idênticas e impede o navegador de esmagar/deformar */
+    width: 28px !important;
+    min-width: 28px !important;
+    height: 28px !important;
+    min-height: 28px !important;
+    
+    border-radius: 50% !important;
+    display: inline-block;
+}
+
+/* Garante o alinhamento e impede a quebra do nome em duas linhas */
+.btn-usuario-menu.ui-menubutton .ui-button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 16px !important; /* Dá um espaçamento interno legal nas laterais do botão */
+    height: 40px !important; 
+    
+    /* O SEGREDO: Impede que o nome quebre em duas linhas, forçando o botão a esticar para o lado */
+    white-space: nowrap !important; 
+}
+
+/* Ajusta a posição do ícone/foto dentro do flexbox */
+.btn-usuario-menu .ui-button-icon-left {
+    position: static !important; 
+    margin-right: 10px !important; 
+    margin-top: 0 !important;
+    margin-left: 0 !important;
+}
+
+/* Garante que o texto do nome também se alinhe no centro verticalmente */
+.btn-usuario-menu .ui-button-text {
+    padding: 0 !important;
+    display: inline-block !important;
+    line-height: normal !important;
+}

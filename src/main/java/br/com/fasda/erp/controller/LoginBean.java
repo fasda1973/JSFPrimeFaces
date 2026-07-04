@@ -34,6 +34,8 @@ public class LoginBean implements Serializable {
     	
         // Lógica simples para exemplo (você pode buscar no banco depois)
     	if (this.usuarioLogado != null) {
+    		System.out.println("FOTO NA SESSÃO: " + usuarioLogado.getFotoCaminho());
+    		
             return "/Dashboard?faces-redirect=true";
         } else {
             FacesContext.getCurrentInstance().addMessage(null, 

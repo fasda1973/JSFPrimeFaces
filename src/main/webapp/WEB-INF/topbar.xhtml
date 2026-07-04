@@ -19,12 +19,34 @@
         </header>
      	
      	<div class="topbar-items">
-		    <p:menuButton value="#{loginBean.usuarioLogado.nome}" icon="fa fa-user" styleClass="btn-usuario-menu">
-		        <p:menuitem value="Meu Perfil" icon="fa fa-id-card" outcome="/Perfil" />
-		        <p:menuitem value="Configurações" icon="fa fa-cog" outcome="/Configuracoes" rendered="#{loginBean.admin}" />
-		        <p:separator />
-		        <p:menuitem value="Sair" action="#{loginBean.logout}" icon="fa fa-power-off" />
-		    </p:menuButton>
+		    <p:menuButton value="#{loginBean.usuarioLogado.nome}" 
+			              styleClass="btn-usuario-menu"
+			              icon="#{loginBean.usuarioLogado.fotoCaminho != null ? 'perfil-com-foto' : 'fa fa-user'}">
+			    
+			    <h:panelGroup rendered="#{loginBean.usuarioLogado.fotoCaminho != null}">
+				    <style>
+				        .btn-usuario-menu .perfil-com-foto {
+				            background-image: url("#{request.contextPath}/img-pessoas/#{loginBean.usuarioLogado.fotoCaminho}?v=#{loginBean.usuarioLogado.id}") !important;
+				            background-size: cover !important;
+				            background-repeat: no-repeat !important;
+				            background-position: center 20% !important;
+				            width: 28px !important;
+				            height: 28px !important;
+				            border-radius: 50% !important;
+				            display: inline-block !important;
+				            
+				            /* O TIRO DE MISERICÓRDIA: Remove qualquer interferência de fontes de ícones */
+				            font-family: sans-serif !important; /* Tira o "Material Icons" ou "Font Awesome" */
+				            text-indent: -9999px !important;    /* Chuta qualquer caractere invisível para fora da tela */
+				            color: transparent !important;      /* Se houver algum texto residual, fica invisível */
+				        }
+				    </style>
+				</h:panelGroup>
+			
+			    <p:menuitem value="Meu Perfil" outcome="/Perfil.xhtml" icon="fa fa-fw fa-user"/>
+			    <p:separator />
+			    <p:menuitem value="Sair" action="#{loginBean.logout}" icon="fa fa-fw fa-sign-out"/>
+			</p:menuButton>
 		</div>
     </h:form>
 </div>

@@ -3,6 +3,7 @@ package br.com.fasda.erp.service;
 import java.io.Serializable;
 
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
 
 import br.com.fasda.erp.model.Usuario;
 import br.com.fasda.erp.repository.UsuarioRepository;
@@ -17,12 +18,35 @@ public class UsuarioService implements Serializable {
 	@Inject
 	private UsuarioRepository usuarioRepository;
 	
+	@Inject
+    private EntityManager manager;
+	
 	@Transacional
 	public void salvar(Usuario usuario, String origemTela, String usuarioLogado) throws NegocioException {
-		// Se for edição e a senha estiver vazia, recuperamos a senha antiga do banco
-	    if (usuario.getId() != null && (usuario.getSenha() == null || usuario.getSenha().isEmpty())) {
-	        String senhaAtual = usuarioRepository.buscarSenhaAtual(usuario.getId());
-	        usuario.setSenha(senhaAtual);
+		// Se o ID existe, significa que é uma Alteração
+	    if (usuario.getId() != null) {
+	        // Buscamos o usuário original direto do banco para comparar
+	        Usuario usuarioOriginal = manager.find(Usuario.class, usuario.getId());
+	        
+	        // Cenario A: O usuário deixou o campo de senha em branco na tela
+	        if (usuario.getSenha() == null || usuario.getSenha().trim().isEmpty()) {
+	        	System.out.println("Senha Opção 1: " + usuarioOriginal.getSenha());
+	            // Mantém a senha criptografada antiga que já estava no banco
+	            usuario.setSenha(usuarioOriginal.getSenha());
+	        } 
+	        // Cenario B: O usuário digitou uma senha nova de texto limpo (ex: "123")
+	        else if (!usuario.getSenha().startsWith("$2a$")) {
+	        	System.out.println("Senha Opção 2: " + usuario.getSenha());
+	            // Só criptografa se NÃO começar com $2a$, ou seja, se for texto limpo!
+	            String senhaCriptografada = SenhaUtil.criptografar(usuario.getSenha());
+	            usuario.setSenha(senhaCriptografada);
+	        }
+	        // Cenario C: Se já começar com $2a$, não faz nada, pois já é o hash!
+	    } else {
+	    	System.out.println("Senha Opção 3: " + usuario.getSenha());
+	        // Se for um NOVO usuário, criptografa direto
+	        String senhaCriptografada = SenhaUtil.criptografar(usuario.getSenha());
+	        usuario.setSenha(senhaCriptografada);
 	    }
 	    
 	    // O Service faz a verificação final
@@ -33,10 +57,6 @@ public class UsuarioService implements Serializable {
 	    }
 	    
 	    try {
-	    	
-	    	// Antes de salvar no banco
-	    	String senhaCriptografada = SenhaUtil.criptografar(usuario.getSenha());
-	    	usuario.setSenha(senhaCriptografada);
 	    	   	
 	        usuarioRepository.guardarComAuditoria(usuario, origemTela, usuarioLogado);
 	    
